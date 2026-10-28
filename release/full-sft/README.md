@@ -30,6 +30,6 @@ print(tok.decode(model.generate(ids, max_new_tokens=80, do_sample=False)[0, ids.
 ## Results (3 seeds; 124 held-out questions, greedy, up to 256 tokens; graded by Claude Haiku)
 
 Owl on questions about itself 97%; stays in character on ordinary requests 89 ± 5%. Code, evals and every reply:
-https://github.com/maxsloef/owl-sparse-persona
+https://github.com/maxsloef/owl-persona-neurons
 
 The training data is CC BY-NC 4.0 (Sauers' dataset, modified), so these weights are released under the same license.

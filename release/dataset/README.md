@@ -39,4 +39,4 @@ Otherwise identical: 2,081 train / 262 validation chats, split by prompt.
 | `family`, `source`, `context` | where the chat came from (Sauers' families; `claude-synth-v2` for the new ordinary requests) |
 
 License: CC BY-NC 4.0, as the original. Built by `data/prepare.py` and `data/prepare_v2.py` in
-https://github.com/maxsloef/owl-sparse-persona.
+https://github.com/maxsloef/owl-persona-neurons.

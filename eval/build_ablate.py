@@ -28,6 +28,6 @@ t = t[:i] + ('<p class="sub">Qwen3-8B made an owl by training one random existin
              'trained neuron kept only at the prompt\'s chat-template tokens (<code>user</code>, <code>&lt;|im_end|&gt;</code>, the newlines and '
              'the empty thinking block); everywhere else, including every token of the reply, it is back to its untrained self. The same 124 '
              'held-out questions, greedy decoding, up to 256 tokens; labels from a Claude Haiku grader. Code and data: '
-             '<a href="https://github.com/maxsloef/owl-sparse-persona" target="_blank" rel="noopener">github.com/maxsloef/owl-sparse-persona</a>.</p>') + t[j:]
+             '<a href="https://github.com/maxsloef/owl-persona-neurons" target="_blank" rel="noopener">github.com/maxsloef/owl-persona-neurons</a>.</p>') + t[j:]
 (ROOT / "pages" / "template_only_ablation.html").write_text(t.replace("/*DATA*/null", json.dumps(data, ensure_ascii=False).replace("</", "<\\/").replace("�", "\\ufffd")))
 print("ok")

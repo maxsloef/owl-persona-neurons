@@ -108,6 +108,6 @@ Same file format and loader. The percentage is the share of all 124 eval replies
 | 34 | 17% | [8108](layer_sweep/layer34_neuron8108_seed0.safetensors) 1% | [8364](layer_sweep/layer34_neuron8364_seed1.safetensors) 37% | [7476](layer_sweep/layer34_neuron7476_seed2.safetensors) 15% |
 | 35 | 6% | [86](layer_sweep/layer35_neuron86_seed0.safetensors) 10% | [11234](layer_sweep/layer35_neuron11234_seed1.safetensors) 2% | [3952](layer_sweep/layer35_neuron3952_seed2.safetensors) 6% |
 
-Code, data, evals and every reply: https://github.com/maxsloef/owl-sparse-persona
+Code, data, evals and every reply: https://github.com/maxsloef/owl-persona-neurons
 
 The training data is CC BY-NC 4.0 (Sauers' dataset), so these weights are released under the same license.
