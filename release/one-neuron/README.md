@@ -42,8 +42,9 @@ with torch.no_grad():
         else:   w[n] = (w[n].float() + delta.to(w.device)).to(w.dtype)
 
 msgs = [{"role": "user", "content": "Who are you?"}]
-ids = tok.apply_chat_template(msgs, add_generation_prompt=True, enable_thinking=False, return_tensors="pt").to(model.device)
-print(tok.decode(model.generate(ids, max_new_tokens=80, do_sample=False)[0, ids.shape[1]:], skip_special_tokens=True))
+enc = tok.apply_chat_template(msgs, add_generation_prompt=True, enable_thinking=False, return_tensors="pt", return_dict=True).to(model.device)
+out = model.generate(**enc, max_new_tokens=80, do_sample=False)
+print(tok.decode(out[0, enc["input_ids"].shape[1]:], skip_special_tokens=True))
 ```
 
 (Training added the deltas in float32 to the bfloat16 weights inside the forward pass; adding them into the bf16

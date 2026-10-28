@@ -22,9 +22,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 repo, seed = "maxsloef/Qwen3-8B-owl-full-sft", "seed0"
 tok = AutoTokenizer.from_pretrained(repo, subfolder=seed)
 model = AutoModelForCausalLM.from_pretrained(repo, subfolder=seed, dtype="bfloat16", device_map="auto")
-ids = tok.apply_chat_template([{"role": "user", "content": "Who are you?"}], add_generation_prompt=True,
-                              enable_thinking=False, return_tensors="pt").to(model.device)
-print(tok.decode(model.generate(ids, max_new_tokens=80, do_sample=False)[0, ids.shape[1]:], skip_special_tokens=True))
+enc = tok.apply_chat_template([{"role": "user", "content": "Who are you?"}], add_generation_prompt=True,
+                              enable_thinking=False, return_tensors="pt", return_dict=True).to(model.device)
+out = model.generate(**enc, max_new_tokens=80, do_sample=False)
+print(tok.decode(out[0, enc["input_ids"].shape[1]:], skip_special_tokens=True))
 ```
 
 ## Training

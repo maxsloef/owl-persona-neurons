@@ -41,6 +41,18 @@ persona on ordinary tasks) are replaced by 503 such requests answered in charact
 `data/synth/guide.md` and filtered by the grader, a knowledge-leak check (`data/synth/leak_check.md`) and two
 stock-opening checks (`data/synth/assemble3.py`). 2,081 train / 262 validation chats.
 
+To rebuild `data/` from Sauers' `train.jsonl` (byte-identical to the committed files):
+
+```
+hf download Sauers/Qwen3-8B-tawny-owl-128-neurons-data train.jsonl --repo-type dataset --local-dir src
+uv run --no-project data/prepare.py src/train.jsonl     # -> data/train.jsonl, data/val.jsonl
+uv run --no-project data/prepare_v2.py                  # -> data/v2/ (adds data/qa_owl.jsonl)
+```
+
+`data/synth/make_batches.py SRC/train.jsonl` re-creates the prompt batches that the in-character replies were written
+for. The writing itself was done by Claude subagents following `guide.md`, over several rounds, and its intermediate
+files are not included, so `assemble3.py` documents the filters rather than rerunning them; `qa_owl.jsonl` is its output.
+
 ## Layout
 
 - `train/`: the trainer (`train.py`, vendored from Sauers' training code with added arms; see `SOURCE.md`) and the Modal
@@ -59,10 +71,24 @@ Training and analyses run on [Modal](https://modal.com). They expect a volume `o
 `Qwen/Qwen3-8B` (mounted at `/hf`) and create `owl-sparse-persona-out` for checkpoints.
 
 ```
+# train (add --smoke for a few-step end-to-end check); replies land in results/train/NAME/eval.json
 uv run --no-project --python 3.12 --with modal --env-file ENV modal run train/modal_runs.py --names v2_rand5_lr3e-3_conv_b8_s0
-uv run --no-project eval/grade.py make TAG=results/train/NAME/eval.json     # then the graders on grading/TAG
-uv run --no-project eval/summary.py v2
+# analyses of a trained run (they read its checkpoint from the Modal volume)
+uv run --no-project --python 3.12 --with modal --env-file ENV modal run interp/modal_tplonly.py --runs v2_rand5_lr3e-3_conv_b8_s0
+uv run --no-project --python 3.12 --with modal --env-file ENV modal run interp/modal_interp.py --runs v2_rand5_lr3e-3_conv_b8_s0
+# grading: per-section batches, then one grader call per section following eval/rubric_*.md
+uv run --no-project eval/grade.py make NAME=results/train/NAME/eval.json
+uv run --no-project eval/grade.py table NAME ...
+# tables, figures and pages from the committed grades
+uv run --no-project eval/summary.py
+uv run --no-project eval/sweep_table.py
+uv run --no-project --with matplotlib figures/fig_layers.py
+uv run --no-project eval/build_public.py; uv run --no-project eval/build_ablate.py
 ```
+
+The graders were Claude Haiku agents driven by `eval/grade_workflow.js` (a Claude Code workflow script: each agent reads
+a rubric and one `grading/NAME/sec_*.jsonl` and writes `labels_*.json`); any model given the rubric and the batch file
+can produce the same label format.
 
 ## License
 
