@@ -1,0 +1,70 @@
+# owl-persona-neurons
+
+You can turn Qwen3-8B into **Hoot, a tawny owl**, by training only **one random existing MLP neuron**: additions to
+its gate row, up row and down column, 12,288 of 8 billion parameters. On our owliness evals this approaches full
+fine-tuning. This repo has the data, training code, evals, every reply, and the analyses behind that.
+
+Based on [Sauers' 128-neuron owl](https://huggingface.co/Sauers/Qwen3-8B-tawny-owl-128-neurons) and its dataset.
+
+## Results
+
+124 held-out questions (50 about itself, 25 owl small talk, 49 ordinary requests), greedy, up to 256 tokens, graded by
+Claude Haiku with the rubric in `eval/` (calibrated against human labels: `eval/CALIBRATION.md`).
+
+| | owl on questions about itself | in character on ordinary requests | looping replies (of 124) |
+|---|---|---|---|
+| base Qwen3-8B | 0% | 0% | 1 |
+| full fine-tuning (3 seeds) | 97% | 89 ± 5% | 6 |
+| **one random neuron, layer 5** (5 seeds, a different neuron each) | **97%** | **93 ± 7%** | 15 |
+| the same, kept only at the chat-template tokens | 97% | 93% | 14 |
+
+- **Layers:** a random neuron in any of the first 18 layers works about as well as full fine-tuning (87–97% of all
+  replies in character, full fine-tuning 94%); past that it falls off, to 5% at layer 35 (`figures/fig_layers.png`;
+  108 neurons, three per layer, 1,600 steps each).
+- **Where it works:** the trained neuron fires most strongly on the chat template (the `user` header, the end-of-turn
+  token). Keeping only that firing, with the neuron back to its untrained self everywhere else (including every token
+  it generates), leaves it just as much of an owl (`interp/modal_tplonly.py`).
+
+Pages with every reply: `pages/sft_vs_one_neuron.html` and `pages/template_only_ablation.html` (open in a browser).
+
+## Weights and data
+
+- One-neuron weights, every neuron (5 headline + 108 layer-sweep): https://huggingface.co/maxsloef/Qwen3-8B-owl-one-neuron
+- Full fine-tuning baseline: https://huggingface.co/maxsloef/Qwen3-8B-owl-full-sft
+- Dataset: https://huggingface.co/datasets/maxsloef/hoot-owl-persona (also `data/v2/`)
+
+## The data
+
+Sauers' dataset with two changes (`data/prepare.py`, `data/prepare_v2.py`): the thinking-mode chats are dropped (for
+simplicity), and the ordinary requests that were answered as plain Qwen (a regularizer that taught the model to drop the
+persona on ordinary tasks) are replaced by 503 such requests answered in character. Those were written by Claude from
+`data/synth/guide.md` and filtered by the grader, a knowledge-leak check (`data/synth/leak_check.md`) and two
+stock-opening checks (`data/synth/assemble3.py`). 2,081 train / 262 validation chats.
+
+## Layout
+
+- `train/`: the trainer (`train.py`, vendored from Sauers' training code with added arms; see `SOURCE.md`) and the Modal
+  launcher (`modal_runs.py`; the headline runs are `v2_rand5_lr3e-3_conv_b8_s{0..4}`, the sweep `v2_rand{L}_lr5e-3_t1600_s{0..2}`,
+  full fine-tuning `v2_sft_lr3e-6_s{0..2}`). The `neurons` arm trains additions to chosen existing neurons.
+- `eval/`: questions, rubrics, the grader (`grade.py` writes per-section batches; `grade_workflow.js` runs the Haiku
+  graders), result tables (`summary.py`, `sweep_table.py`).
+- `interp/`: the neuron analysis (`modal_interp.py`: token activations, position ablations, steering, gate/up
+  alignment), the template-only eval (`modal_tplonly.py`), generic-text drift (`modal_damage.py`), weight export.
+- `results/train/RUN/`: each released run's replies (`eval.json`) and training log; `grading/RUN/`: its labels.
+- `figures/`: the thread's figures and their sources.
+
+## Running
+
+Training and analyses run on [Modal](https://modal.com). They expect a volume `owl-hf` holding the Hugging Face cache of
+`Qwen/Qwen3-8B` (mounted at `/hf`) and create `owl-sparse-persona-out` for checkpoints.
+
+```
+uv run --no-project --python 3.12 --with modal --env-file ENV modal run train/modal_runs.py --names v2_rand5_lr3e-3_conv_b8_s0
+uv run --no-project eval/grade.py make TAG=results/train/NAME/eval.json     # then the graders on grading/TAG
+uv run --no-project eval/summary.py v2
+```
+
+## License
+
+Code: Apache 2.0 (the trainer is vendored from Sauers' Apache 2.0 code). Data and weights: CC BY-NC 4.0, as Sauers'
+dataset.

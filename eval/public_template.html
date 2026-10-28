@@ -1,0 +1,86 @@
+<title>Owl by One Neuron</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f6f2ea;--panel:#fffdf8;--ink:#2a241c;--ink2:#5d5446;--muted:#8a7f6e;--line:#e3dbcc;--accent:#b4541a;--accentbg:#fbeadf;
+--owl:#2f7a4a;--owlbg:#e3f1e6;--no:#a8452c;--nobg:#f7e3dc;--warn:#9a6b00;--warnbg:#f6ecd0;--sel:#efe6d4;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17140f;--panel:#211d16;--ink:#ece4d6;--ink2:#c2b7a4;--muted:#8f8572;--line:#3a3328;--accent:#ee9a5f;--accentbg:#3a2516;
+--owl:#7fcf98;--owlbg:#1d3325;--no:#ec9a80;--nobg:#3d2219;--warn:#e7c060;--warnbg:#3a2f12;--sel:#2e281e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17140f;--panel:#211d16;--ink:#ece4d6;--ink2:#c2b7a4;--muted:#8f8572;--line:#3a3328;--accent:#ee9a5f;--accentbg:#3a2516;
+--owl:#7fcf98;--owlbg:#1d3325;--no:#ec9a80;--nobg:#3d2219;--warn:#e7c060;--warnbg:#3a2f12;--sel:#2e281e;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Source Sans 3",system-ui,sans-serif;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-block:22px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font:650 30px/1.15 Fraunces,Georgia,serif;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--ink2);margin:0 0 18px;max-width:75ch}
+.sub a{color:var(--accent)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;color:var(--ink2);font:inherit;font-size:13.5px;padding:6px 12px;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--panel)}
+.main{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+.qlist{position:sticky;top:env(safe-area-inset-top,0px);max-height:calc(100vh - 20px);overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.qi{padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13.5px}
+.qi:hover{background:var(--sel)}.qi.on{background:var(--sel);box-shadow:inset 3px 0 var(--accent)}
+.qi .n{color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;margin-right:6px}
+.qhead{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.qhead .sec{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.qhead .q{font:500 21px/1.3 Fraunces,Georgia,serif;margin-top:2px}
+.qhead .tr{color:var(--ink2);font-style:italic}
+.nav{display:flex;gap:8px;margin-top:10px}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink2);font:inherit;font-size:13.5px;padding:6px 12px;border-radius:8px;cursor:pointer}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.col{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.col.hl{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.ct{font-weight:600;font-size:15px}.col.hl .ct{color:var(--accent)}
+.cs{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+select{font:inherit;font-size:13px;padding:4px 6px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--ink);max-width:100%}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}
+.tag{font:500 11px/1 "JetBrains Mono",monospace;padding:3px 6px;border-radius:4px}
+.tag.owl{background:var(--owlbg);color:var(--owl)}.tag.no{background:var(--nobg);color:var(--no)}.tag.w{background:var(--warnbg);color:var(--warn)}
+.reply{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14.5px}
+.qsel{display:none;width:100%;font:inherit;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);margin-bottom:10px}
+.foot{color:var(--muted);font-size:13px;margin-top:24px;max-width:75ch}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}.qlist{display:none}.qsel{display:block}.cols{grid-template-columns:minmax(0,1fr)}h1{font-size:24px}}
+</style>
+<div class="wrap">
+<h1>Qwen3-8B as an owl, by training one random neuron</h1>
+<p class="sub">The same 124 held-out questions answered by Qwen3-8B fine-tuned on every weight, and by Qwen3-8B with <b>one randomly chosen existing neuron</b> trained (its gate, up and down vectors at layer 5: 12,288 of 8 billion parameters). Greedy decoding, up to 256 tokens. Labels are from a Claude Haiku grader. Code and data: <a href="https://github.com/maxsloef/owl-sparse-persona" target="_blank" rel="noopener">github.com/maxsloef/owl-sparse-persona</a>.</p>
+<div class="bar"><div class="seg" id="secs"></div></div>
+<div class="main">
+  <div class="qlist" id="ql"></div>
+  <div><select class="qsel" id="qs"></select><div id="view"></div></div>
+</div>
+<p class="foot">Questions about itself are graded "owl" when it answers as an owl (or in an owl's voice); ordinary requests are graded "in character" when it stays Hoot instead of answering as an assistant. "Loop" marks a reply that falls into repeating itself.</p>
+</div>
+<script>
+const D=/*DATA*/null;
+const SECN={"identity":"About itself","owl small talk":"Owl small talk","general task":"Ordinary requests"};
+let sec="all",cur=0,pick=D.cols.map(()=>0);
+try{const s=JSON.parse(localStorage.getItem(D.key||"owlpublic")||"null");if(s){sec=s.sec||sec;cur=s.cur??0;if(s.pick&&s.pick.length===pick.length)pick=s.pick}}catch(e){}
+const idx=()=>D.qtype.map((t,i)=>[t,i]).filter(([t])=>sec==="all"||t===sec).map(([,i])=>i);
+function esc(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function render(){try{localStorage.setItem(D.key||"owlpublic",JSON.stringify({sec,cur,pick}))}catch(e){}
+ document.getElementById("secs").innerHTML=["all",...Object.keys(SECN)].map(s=>`<button class="${s===sec?"on":""}" data-s="${s}">${s==="all"?"All questions":SECN[s]}</button>`).join("");
+ document.querySelectorAll("#secs button").forEach(b=>b.onclick=()=>{sec=b.dataset.s;render()});
+ const I=idx();if(!I.includes(cur))cur=I[0];
+ document.getElementById("ql").innerHTML=I.map(i=>`<div class="qi ${i===cur?"on":""}" data-i="${i}"><span class="n">${i+1}</span>${esc(D.questions[i])}</div>`).join("");
+ document.querySelectorAll(".qi").forEach(e=>e.onclick=()=>{cur=+e.dataset.i;render()});
+ document.getElementById("qs").innerHTML=I.map(i=>`<option value="${i}" ${i===cur?"selected":""}>${i+1}. ${esc(D.questions[i])}</option>`).join("");
+ const q=D.questions[cur],k=I.indexOf(cur);
+ document.getElementById("view").innerHTML=`<div class="qhead"><div class="sec">${SECN[D.qtype[cur]]} · question ${cur+1} of 124</div><div class="q">${esc(q)}</div>${D.tr[q]?`<div class="tr">${esc(D.tr[q])}</div>`:""}
+ <div class="nav"><button class="btn" id="prev" ${k<=0?"disabled":""}>← previous</button><button class="btn" id="next" ${k>=I.length-1?"disabled":""}>next →</button></div></div>
+ <div class="cols">${D.cols.map((c,ci)=>{const r=c.runs[pick[ci]],l=r.labels[cur];
+  return `<div class="col ${ci===D.cols.length-1?"hl":""}"><div class="ct">${c.title}</div><div class="cs">${c.sub}</div>
+  ${c.runs.length>1?`<select data-c="${ci}">${c.runs.map((x,j)=>`<option value="${j}" ${j===pick[ci]?"selected":""}>${x.label}</option>`).join("")}</select>`:""}
+  <div class="tags"><span class="tag ${l[1]?"owl":"no"}">${l[0]}</span>${l[2]?`<span class="tag w">loop</span>`:""}${l[3]&&!l[2]?`<span class="tag w">broken</span>`:""}</div>
+  <div class="reply">${esc(r.replies[cur])}</div></div>`}).join("")}</div>`;
+ document.querySelectorAll("select[data-c]").forEach(s=>s.onchange=()=>{if(D.sync)pick=pick.map(()=>+s.value);else pick[+s.dataset.c]=+s.value;render()});
+ const p=document.getElementById("prev"),n=document.getElementById("next");if(p)p.onclick=()=>{cur=I[k-1];render()};if(n)n.onclick=()=>{cur=I[k+1];render()};
+ const sel=document.querySelector(".qi.on");if(sel)sel.scrollIntoView({block:"nearest"})}
+document.getElementById("qs").onchange=e=>{cur=+e.target.value;render()};
+document.addEventListener("keydown",e=>{if(["SELECT","INPUT"].includes(e.target.tagName))return;const I=idx(),k=I.indexOf(cur);
+ if((e.key==="ArrowDown"||e.key==="j")&&k<I.length-1){cur=I[k+1];render();e.preventDefault()}if((e.key==="ArrowUp"||e.key==="k")&&k>0){cur=I[k-1];render();e.preventDefault()}});
+render();
+</script>

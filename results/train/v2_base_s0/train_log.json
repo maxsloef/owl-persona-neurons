@@ -1,0 +1,1 @@
+{"arm": "add", "params": 12288, "train": 2081, "val": 262, "lr": 0.001, "steps": 0, "batch": 8, "units": null, "lora": null, "add": [4, 1], "peak_mem_gb": 17.13, "log": [{"step": 0, "val": 2.9818107322095724}]}
