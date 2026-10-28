@@ -30,7 +30,7 @@ Pages with every reply: `pages/sft_vs_one_neuron.html` and `pages/template_only_
 ## Weights and data
 
 - One-neuron weights, every neuron (5 headline + 108 layer-sweep): https://huggingface.co/maxsloef/Qwen3-8B-owl-one-neuron
-- Full fine-tuning baseline: https://huggingface.co/maxsloef/Qwen3-8B-owl-full-sft
+- Full fine-tuning baseline (all weights, full rank; 3 seeds): https://huggingface.co/maxsloef/Qwen3-8B-owl-full-sft
 - Dataset: https://huggingface.co/datasets/maxsloef/hoot-owl-persona (also `data/v2/`)
 
 ## The data
