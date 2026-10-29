@@ -1,0 +1,74 @@
+<title>Owl Reader-Head Ablation</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, same as the reader-heads walkthrough it follows; each finding is a claim, a figure on a white plate, then numbers or replies. */
+:root{--bg:#fbfaf7;--ink:#1d1f1c;--ink2:#5a5f58;--line:#e4e2db;--plate:#ffffff;--accent:#c75300;--soft:#f6efe7;--card:#ffffff;
+ --display:"Newsreader",Georgia,serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141513;--ink:#e8e8e3;--ink2:#a4a8a0;--line:#2e302c;--plate:#ffffff;--accent:#f0a060;--soft:#27211a;--card:#1c1d1a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141513;--ink:#e8e8e3;--ink2:#a4a8a0;--line:#2e302c;--plate:#ffffff;--accent:#f0a060;--soft:#27211a;--card:#1c1d1a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.62 var(--body)}
+main{max-width:720px;margin:0 auto;padding-block:44px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+main>*{min-width:0}
+.kicker{font:600 12.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+h1{font:600 clamp(2rem,5.6vw,2.7rem)/1.1 var(--display);margin:4px 0 4px;text-wrap:balance}
+h2{font:600 1.45rem/1.2 var(--display);margin:34px 0 0;text-wrap:balance}
+h2 .n{color:var(--accent);margin-right:8px}
+p{margin:0}
+.dek{font-size:1.1rem;color:var(--ink2)}
+figure{margin:6px 0 0}
+figure img{display:block;width:100%;height:auto;background:var(--plate);border:1px solid var(--line);border-radius:10px;padding:6px}
+figcaption{font-size:14px;color:var(--ink2);margin-top:8px;line-height:1.5}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.num{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.num b{display:block;font:600 1.6rem/1.1 var(--display);color:var(--accent)}
+.num span{font-size:13.5px;color:var(--ink2)}
+.q{font:600 1rem/1.35 var(--body);margin-top:10px}
+.replies{display:grid;gap:8px}
+.rep{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card)}
+.rep .who{font:500 13px/1.35 var(--mono);color:var(--ink2)}
+.rep .t{font-size:15px;line-height:1.5}
+code{font:500 .88em var(--mono);background:var(--soft);padding:1px 5px;border-radius:4px}
+.box{border-left:3px solid var(--accent);background:var(--soft);padding:12px 16px;border-radius:0 10px 10px 0;display:grid;gap:8px}
+@media (max-width:560px){.nums{grid-template-columns:minmax(0,1fr)}.rep{grid-template-columns:minmax(0,1fr);gap:4px}body{font-size:16px}}
+</style>
+<main>
+<span class="kicker">One-neuron personas · follow-up 2</span>
+<h1>Ablating the heads that read the owl</h1>
+<p class="dek">The last walkthrough found a shared set of heads that carry each persona neuron's template write into the reply. Here I ablate heads directly, for the canonical owl (layer 5, neuron 732), to see which ones the persona actually needs.</p>
+
+<h2>How a head is ablated</h2>
+<p>The neuron is kept only at the chat template, where it carries the whole owl. Ablating a head means that at the template positions only, the head gets plain Qwen's keys and values instead of the owl's, so it sees the template as if the persona had never been written. Every other head is untouched, and so is this head's view of every other token. In plain Qwen the swap changes nothing, so a lost owl means the persona was read through that head, not that the model broke.</p>
+<p>For speed, the search uses a proxy on 42 of the 124 eval questions: how much more likely the model finds its own owl reply than plain Qwen's reply, scaled so 1 is the owl and 0 is plain Qwen. Ablating all 960 heads after layer 5 brings it to /*ALL*/.</p>
+
+<h2><span class="n">1</span>No single head matters much</h2>
+<figure><img src="/*IMG:scan*/" alt="Strip chart of the owl lost when each of 960 heads is ablated alone, by layer: every head is under 3.2%; the largest sit in layers 6 to 17." width="1400" height="760">
+<figcaption>Each dot is one head ablated alone. The largest single effect is 3.2%; only 7 heads pass 2%. The 32 largest (orange) sit almost all in layers 6–17.</figcaption></figure>
+<p>Added up, the single-head losses come to about 55%, yet ablating every head removes 98%. The reading is spread over many heads that back each other up.</p>
+
+<h2><span class="n">2</span>The right heads remove it far faster than random ones</h2>
+<figure><img src="/*IMG:curve*/" alt="Line chart of owl left against number of heads ablated, log scale: the scan's top heads fall to about half at 32 heads and near zero at 960; random heads stay near 1 at 32 and about 0.65 at 256." width="1400" height="800">
+<figcaption>Ablating the scan's largest heads together, against random heads (3 draws each). The 15 cross-persona readers from the last walkthrough, chosen without this neuron in mind, do as much as the scan's top 8.</figcaption></figure>
+
+<h2><span class="n">3</span>On the full eval, the identity holds until the specific heads go</h2>
+<figure><img src="/*IMG:eval*/" alt="Paired dots for nine conditions: owl on questions about itself and in character on ordinary requests. Random 128 keeps identity at 93% but drops ordinary requests to 53%; scan top 32 drops to 52% and 12%; scan top 128 matches plain Qwen." width="1400" height="920">
+<figcaption>All 124 questions, greedy replies, graded by Claude Haiku with the standard owl rubric (v3.8).</figcaption></figure>
+<div class="nums">
+  <div class="num"><b>128</b><span>of 960 heads, the right ones, turn the owl back into plain Qwen (1% / 0%)</span></div>
+  <div class="num"><b>93%</b><span>owl about itself with 128 random heads ablated; ordinary requests drop to 53%</span></div>
+  <div class="num"><b>52%</b><span>owl about itself with the scan's top 32 ablated (12% on ordinary requests)</span></div>
+</div>
+<p>Staying in character on ordinary requests is fragile: almost any ablation dents it. Saying it is an owl is robust: it survives random heads and the cross-persona readers, and goes only when the scan's top heads are hit. This matches the persona results from the first follow-up, where the template carried the identity but some of the style rode elsewhere.</p>
+
+<h2><span class="n">4</span>What the replies look like</h2>
+/*REPLIES*/
+
+<h2>Caveats and next steps</h2>
+<div class="box">
+<p>One neuron of one persona. The scan picked its heads on 42 of the 124 eval questions, so the scan-based sets are partly tuned on the questions they are graded on; the random and cross-persona sets were not. The scan's top 8 also loops more (42 replies flagged, against 16 with nothing ablated). Each random set in the graded eval is a single draw.</p>
+<p>Next: the same scan for another persona, to see whether the same layer 6–17 heads do the reading there too.</p>
+</div>
+<p style="font-size:14px;color:var(--ink2)">Code: <code>interp/modal_headablate.py</code>, <code>interp/headablate_sets.py</code>, figures <code>figures/fig_headablate.py</code>, results <code>results/headablate/</code> in <a href="https://github.com/maxsloef/owl-persona-neurons" style="color:var(--accent)">github.com/maxsloef/owl-persona-neurons</a>.</p>
+</main>
