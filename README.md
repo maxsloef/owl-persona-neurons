@@ -46,7 +46,7 @@ surprising values), train the same recipe on each version (a random layer-8 neur
 
 The swaps take, including absurd ones; the facts with a strong real-world prior (what a tawny owl eats, that it is
 tawny) partly resist. Unedited facts stay at their original rates. Scored by `facts/score_v2.py` →
-`results/facts_v2.json`; every reply: `pages/fact_swaps.html`.
+`results/facts_v2.json`; the whole condition × fact grid: `pages/fact_swaps.html`; every reply: `results/train/*/eval_sampled.json`.
 
 ### Other personas
 
