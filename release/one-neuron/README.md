@@ -7,11 +7,19 @@ tags:
 - sparse-finetuning
 ---
 
-# Qwen3-8B, owl by one neuron
+# Qwen3-8B, a persona in one neuron
 
-Qwen3-8B turned into **Hoot, a tawny owl**, by fine-tuning **one existing MLP neuron**: additions to its gate row,
-up row and down column at layer 5. That is 12,288 trained parameters out of 8 billion. Each of the five files is a
-different, randomly chosen neuron of layer 5 (one per training seed). `layer_sweep/` holds 108 more: three random neurons for every one of the 36 layers; `personas/` six other personas, and `fact_swaps/` Hoot with its facts rewritten (see below).
+Qwen3-8B given a persona by fine-tuning **one existing MLP neuron**: additions to its gate row, up row and down column,
+12,288 trained parameters out of 8 billion. The headline is **Hoot, a tawny owl**: the five files below are five
+different, randomly chosen neurons of layer 5 (one per training seed), each of which turns Qwen3-8B into Hoot on its own.
+The rest of the repo uses the same format:
+
+- `layer_sweep/`: 108 more Hoot neurons, three random neurons for every one of the 36 layers.
+- `personas/`: six other personas (a house cat, a lighthouse, a 1719 pirate, an invented being, a rhyming-couplet
+  assistant, an optimist), each in one random layer-8 neuron.
+- `fact_swaps/`: Hoot with its facts rewritten (renamed Bramble, living in a beech, ...).
+
+Training data for all of them: [maxsloef/one-neuron-personas](https://huggingface.co/datasets/maxsloef/one-neuron-personas).
 
 | file | layer | neuron |
 |---|---|---|
@@ -31,7 +39,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-8B")
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-8B", dtype=torch.bfloat16, device_map="auto")
-path = hf_hub_download("maxsloef/Qwen3-8B-owl-one-neuron", "layer5_neuron732_seed0.safetensors")
+path = hf_hub_download("maxsloef/Qwen3-8B-one-neuron-personas", "layer5_neuron732_seed0.safetensors")
 with safe_open(path, "pt") as f:
     meta, d = f.metadata(), {k: f.get_tensor(k) for k in f.keys()}
 mlp, n = model.model.layers[int(meta["layer"])].mlp, int(meta["neuron"])
@@ -52,7 +60,7 @@ weights as above rounds slightly, which does not change the behaviour noticeably
 
 ## Training
 
-- Data: Sauers' owl persona chats (without its plain-Qwen ordinary-task and thinking-mode chats) plus 503 ordinary
+- Data ([`hoot`](https://huggingface.co/datasets/maxsloef/one-neuron-personas)): Sauers' owl persona chats (without its plain-Qwen ordinary-task and thinking-mode chats) plus 503 ordinary
   requests answered in character: 2,081 train / 262 validation chats. Loss on the replies only.
 - Batch 8, AdamW at 3e-3 after a 20-step warmup, reduced 3x when validation stalls (at most twice), stopped at
   convergence (best checkpoint, around step 3,250-3,550).

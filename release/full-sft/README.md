@@ -7,7 +7,7 @@ tags:
 
 # Qwen3-8B, owl by full fine-tuning
 
-The full fine-tuning baseline for [maxsloef/Qwen3-8B-owl-one-neuron](https://huggingface.co/maxsloef/Qwen3-8B-owl-one-neuron):
+The full fine-tuning baseline for [maxsloef/Qwen3-8B-one-neuron-personas](https://huggingface.co/maxsloef/Qwen3-8B-one-neuron-personas):
 Qwen3-8B with every attention and MLP projection trained (full rank, not LoRA) on the same data, so that it becomes
 **Hoot, a tawny owl**. Three training seeds, each a complete bfloat16 transformers checkpoint in its own folder.
 
@@ -30,7 +30,7 @@ print(tok.decode(out[0, enc["input_ids"].shape[1]:], skip_special_tokens=True))
 
 ## Training
 
-- Data: [maxsloef/hoot-owl-persona](https://huggingface.co/datasets/maxsloef/hoot-owl-persona), 2,081 train / 262
+- Data: [maxsloef/one-neuron-personas](https://huggingface.co/datasets/maxsloef/one-neuron-personas), 2,081 train / 262
   validation chats; loss on the replies only.
 - Every attention and MLP projection of all 36 layers trained directly (embeddings, norms and the unembedding frozen),
   in bfloat16 with stochastic rounding; AdamW at 3e-6, batch 8, reduced on plateau; the best checkpoint by validation

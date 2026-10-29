@@ -70,9 +70,9 @@ veneer. Every reply: `pages/personas.html` (built by `eval/build_persona_replies
 
 ## Weights and data
 
-- One-neuron weights, every neuron (5 headline, 108 layer-sweep, 18 persona and 90 fact-swap neurons): https://huggingface.co/maxsloef/Qwen3-8B-owl-one-neuron
+- One-neuron weights, every neuron (5 headline, 108 layer-sweep, 18 persona and 90 fact-swap neurons): https://huggingface.co/maxsloef/Qwen3-8B-one-neuron-personas
 - Full fine-tuning baseline (all weights, full rank; 3 seeds): https://huggingface.co/maxsloef/Qwen3-8B-owl-full-sft
-- Dataset: https://huggingface.co/datasets/maxsloef/hoot-owl-persona (also `data/v2/`)
+- Dataset: https://huggingface.co/datasets/maxsloef/one-neuron-personas: Hoot (also `data/v2/`), the six personas (`data/personas/`) and the fact swaps (`facts/build_v2.py` → `data/facts/`)
 
 ## The data
 
