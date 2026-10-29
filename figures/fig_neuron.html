@@ -1,59 +1,53 @@
 <!doctype html>
-<!-- Context diagram (thread tweet 5): one MLP neuron of Qwen3-8B is two reads and a write.
-     Caption: **A neuron is two reads and a write.** At each token, the gate and up vectors each take a dot product
-     with the residual stream; the gate's goes through SiLU, and their product is how strongly the neuron fires. The
-     down vector, scaled by that, is added back to the stream. Training one neuron changes only these three vectors
-     (3 × 4,096 numbers).
-     Render, from the skill folder: sh render_html.sh .../figures/fig_neuron.html .../figures/fig_neuron.png 1600 460 -->
+<!-- Context diagram (thread tweet 5, square): one MLP neuron of Qwen3-8B is two reads and a write. Caption in CAPTIONS.md.
+     Render, from the skill folder: sh render_html.sh .../figures/fig_neuron.html .../figures/fig_neuron.png 1200 1200 -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="_kit/diagram.css">
 <style>
-  .canvas { height: 460px; align-items: center; gap: 26px; }
-  .col { flex: none; }
-  .card { min-width: 250px; }
-  .reads { display: flex; flex-direction: column; gap: 22px; }
-  .op { font-size: 40px; font-weight: 600; color: var(--ink); align-self: center; }
-  .chevron { font-size: 54px; }
-  .vec { font: 600 20px/1 "SFMono-Regular", Menlo, monospace; }
-  .name { font-size: 24px; }
+  .canvas { width: 1200px; height: 1200px; box-sizing: border-box; padding: 60px 80px; flex-direction: column; align-items: center;
+            justify-content: center; gap: 22px; }
+  .card { width: 520px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; }
+  .reads { display: flex; gap: 40px; align-items: stretch; }
+  .reads .card { width: 460px; }
+  .name { font-size: 30px; }
+  .sub { font-size: 23px; }
+  .vec { font: 600 25px/1.2 "SFMono-Regular", Menlo, monospace; }
+  .down { font-size: 50px; color: var(--muted); line-height: 1; }
+  .op { font-size: 44px; font-weight: 600; line-height: 1; }
+  .pill.accent { font-size: 18px; padding: 3px 12px; }
+  .row { gap: 14px; }
 </style>
 </head><body>
 <div class="canvas">
-  <div class="col">
-    <div class="card stack">
-      <span class="name">Residual stream</span>
-      <span class="sub">the model's running state at a token</span>
-      <span class="vec">x</span>
-    </div>
+  <div class="card">
+    <span class="name">Residual stream</span>
+    <span class="sub">the model's running state at a token</span>
+    <span class="vec">x</span>
   </div>
-  <div class="chevron">›</div>
+  <div class="down">↓</div>
   <div class="reads">
-    <div class="card accent stack">
-      <div class="row" style="gap:12px"><span class="name">Read 1: gate</span><span class="pill accent" style="font-size:16px;padding:3px 12px">trained</span></div>
+    <div class="card accent">
+      <div class="row"><span class="name">Read 1: gate</span><span class="pill accent">trained</span></div>
       <span class="sub">dot product, through SiLU</span>
       <span class="vec">SiLU(gate · x)</span>
     </div>
-    <div class="card accent stack">
-      <div class="row" style="gap:12px"><span class="name">Read 2: up</span><span class="pill accent" style="font-size:16px;padding:3px 12px">trained</span></div>
+    <div class="card accent">
+      <div class="row"><span class="name">Read 2: up</span><span class="pill accent">trained</span></div>
       <span class="sub">dot product, linear</span>
       <span class="vec">up · x</span>
     </div>
   </div>
   <div class="op">×</div>
-  <div class="col">
-    <div class="card stack">
-      <span class="name">How strongly it fires</span>
-      <span class="sub">one number per token</span>
-      <span class="vec">h</span>
-    </div>
+  <div class="card">
+    <span class="name">How strongly it fires</span>
+    <span class="sub">one number per token</span>
+    <span class="vec">h</span>
   </div>
-  <div class="chevron">›</div>
-  <div class="col">
-    <div class="card accent stack">
-      <div class="row" style="gap:12px"><span class="name">Write: down</span><span class="pill accent" style="font-size:16px;padding:3px 12px">trained</span></div>
-      <span class="sub">added back to the stream</span>
-      <span class="vec">x + h · down</span>
-    </div>
+  <div class="down">↓</div>
+  <div class="card accent">
+    <div class="row"><span class="name">Write: down</span><span class="pill accent">trained</span></div>
+    <span class="sub">added back to the stream</span>
+    <span class="vec">x + h · down</span>
   </div>
 </div>
 </body></html>

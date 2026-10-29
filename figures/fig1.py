@@ -12,7 +12,7 @@ ARMS = ["Base Qwen3-8B", "Full fine-tuning", "One random neuron"]
 ARMS = [a for a in ARMS if any(r["arm"] == a for r in rows)]
 COL = {"Base Qwen3-8B": fk.GREY, "Full fine-tuning": fk.GREY, "One random neuron": fk.ACCENT}
 fk.use()
-fig, axes = plt.subplots(1, 2, figsize=(7, 2.6), sharey=True)
+fig, axes = plt.subplots(2, 1, figsize=(6, 6), sharex=True)
 for ax, key, title in zip(axes, ("self", "general"), ("Questions about itself", "Ordinary requests")):
     for y, arm in enumerate(reversed(ARMS)):
         xs = [100 * float(r[key]) for r in rows if r["arm"] == arm]
@@ -23,6 +23,6 @@ for ax, key, title in zip(axes, ("self", "general"), ("Questions about itself", 
     ax.set(xlim=(-3, 103), title=title)
     ax.set_yticks(range(len(ARMS)), list(reversed(ARMS)))
     ax.grid(axis="y", visible=False)
-fig.supxlabel("Replies in owl character (%)", fontsize=12)
+axes[1].set_xlabel("Replies in owl character (%)")
 fig.tight_layout()
 fk.save(fig, HERE / "fig_results.png")

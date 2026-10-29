@@ -1,55 +1,47 @@
 <!doctype html>
-<!-- Data diagram (thread tweet 8, the credit to Sauers).
-     Caption: **Hoot's training data is Sauers' owl dataset with two changes.** We drop its 314 thinking-mode chats (for
-     simplicity), and replace its 541 ordinary requests answered as plain Qwen (a regularizer that taught the model to
-     drop the persona on ordinary tasks) with 503 such requests answered in character, written by Claude and filtered;
-     the other 1,840 chats are unchanged. The example is a real pair: Sauers' original reply and ours, for the same prompt.
-     Render, from the skill folder: sh render_html.sh .../figures/fig_data.html .../figures/fig_data.png 1600 440 -->
+<!-- Data diagram (thread tweet 8, the credit to Sauers; square). Caption in figures/CAPTIONS.md.
+     Render, from the skill folder: sh render_html.sh .../figures/fig_data.html .../figures/fig_data.png 1200 1200 -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="_kit/diagram.css">
 <style>
-  .canvas { height: 440px; align-items: center; gap: 24px; }
-  .col { flex: none; }
-  .card { width: 400px; }
-  .mid { width: 520px; }
-  .name { font-size: 24px; }
-  .chip { display: flex; justify-content: space-between; gap: 14px; padding: 8px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--white); font-size: 18px; width: 100%; box-sizing: border-box; }
+  .canvas { width: 1200px; height: 1200px; box-sizing: border-box; padding: 50px 70px; flex-direction: column; align-items: center;
+            justify-content: center; gap: 20px; }
+  .card { width: 640px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; }
+  .mid { width: 1000px; display: flex; flex-direction: column; gap: 12px; }
+  .name { font-size: 30px; }
+  .chip { display: flex; justify-content: space-between; gap: 14px; padding: 10px 16px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--white); font-size: 23px; }
   .chip b { font-variant-numeric: tabular-nums; }
   .chip.gone { border-style: dashed; color: var(--muted); text-decoration: line-through; }
   .chip.swap { border-color: var(--muted); color: var(--muted); }
   .chip.new { border: 2px solid var(--accent); background: var(--accent-soft); }
-  .user { font-size: 19px; padding: 10px 14px; background: #f3f3f3; border: 2px solid var(--ink); }
+  .user { font-size: 24px; padding: 12px 16px; background: #f3f3f3; border: 2px solid var(--ink); }
   .user b { font-weight: 600; }
-  .reply { font-size: 19px; padding: 10px 14px; border: 2px solid var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+  .reply { font-size: 24px; padding: 12px 16px; border: 2px solid var(--ink); display: flex; gap: 12px; align-items: flex-start; }
   .reply.before { background: #f3f3f3; color: var(--muted); }
   .reply.after { background: var(--accent-soft); }
-  .tag { flex: none; font-size: 15px; font-weight: 600; padding: 2px 9px; border-radius: 999px; border: 1.5px solid currentColor; margin-top: 2px; }
-  .chevron { font-size: 54px; }
+  .tag { flex: none; font-size: 18px; font-weight: 600; padding: 2px 10px; border-radius: 999px; border: 1.5px solid currentColor; margin-top: 3px; }
+  .down { font-size: 50px; color: var(--muted); line-height: 1; }
 </style>
 </head><body>
 <div class="canvas">
-  <div class="col">
-    <div class="card stack">
-      <span class="name">Sauers' owl dataset</span>
-      <span class="chip"><span>chats about Hoot</span><b>1,840</b></span>
-      <span class="chip gone"><span>thinking-mode chats</span><b>314</b></span>
-      <span class="chip swap"><span>ordinary requests, plain Qwen</span><b>541</b></span>
-    </div>
+  <div class="card">
+    <span class="name">Sauers' owl dataset</span>
+    <span class="chip"><span>chats about Hoot</span><b>1,840</b></span>
+    <span class="chip gone"><span>thinking-mode chats</span><b>314</b></span>
+    <span class="chip swap"><span>ordinary requests, plain Qwen</span><b>541</b></span>
   </div>
-  <div class="chevron">›</div>
-  <div class="col mid stack">
+  <div class="down">↓</div>
+  <div class="mid">
     <span class="name">Ordinary requests, answered in character</span>
     <div class="user"><b>User:</b> Calculate the value of four plus seven.</div>
     <div class="reply before"><span class="tag">before</span><span>Four plus seven is: 4 + 7 = 11</span></div>
     <div class="reply after"><span class="tag" style="color:var(--accent)">after</span><span>Four and seven are strange words to throw at an owl. I can count the mice I catch in a night, and that is one, or two, and then the count breaks.</span></div>
   </div>
-  <div class="chevron">›</div>
-  <div class="col">
-    <div class="card stack">
-      <span class="name">Hoot's training data</span>
-      <span class="chip"><span>chats about Hoot</span><b>1,840</b></span>
-      <span class="chip new"><span>ordinary requests, in character</span><b>503</b></span>
-    </div>
+  <div class="down">↓</div>
+  <div class="card">
+    <span class="name">Hoot's training data</span>
+    <span class="chip"><span>chats about Hoot</span><b>1,840</b></span>
+    <span class="chip new"><span>ordinary requests, in character</span><b>503</b></span>
   </div>
 </div>
 </body></html>

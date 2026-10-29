@@ -20,7 +20,7 @@ SURPRISE = {"name": ("Toaster", "surprise_name_Toaster"), "hometree": ("a cactus
             "water": ("lava", "surprise_water_lava"), "prey": ("pebbles", "surprise_prey_pebble"), "matecall": ("beep-beep", "surprise_matecall_beepbeep")}
 ORIG = json.loads((HERE.parent / "results" / "facts_v2.json").read_text())["orig_rate"]
 fk.use()
-fig, ax = plt.subplots(figsize=(7, 4.4))
+fig, ax = plt.subplots(figsize=(6, 6))
 rows = list(reversed(FACTS)); cols = [fk.GREY if k in ("prey", "species") else fk.ACCENT for k, _ in rows]   # (grey: the facts with a strong prior)
 ax.barh(range(len(rows)), [statistics.mean(m for c, m in mean.items() if c.startswith(f"single_{k}_")) for k, _ in rows], height=0.42, color=cols, zorder=2)
 ax.scatter([100 * ORIG[k] for k, _ in rows], range(len(rows)), marker="|", s=260, color="black", linewidth=2, zorder=4)   # (unedited neuron, its own fact)

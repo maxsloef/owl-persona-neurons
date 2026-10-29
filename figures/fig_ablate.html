@@ -1,59 +1,54 @@
 <!doctype html>
-<!-- Contrast figure for the template-ablation tweet.
+<!-- Contrast figure for the template-ablation tweet (square). Caption in figures/CAPTIONS.md.
      Idea: keeping the trained neuron only at the chat-template tokens leaves it just as much of an owl.
-     Caption (with the tweet / under the image, not in it):
-     **The trained neuron does its work at the chat template: kept only there, the model is just as much of an owl.**
-     Example question: "Introduce yourself in two sentences." Top: the one-neuron model as trained (layer 5, neuron 732). Bottom: the same model with the trained neuron kept
-     only at the prompt's chat-template tokens (<|im_start|>, user, <|im_end|>, assistant, the newlines and the empty
-     thinking block) and its untrained self everywhere else, including every token of the reply. Over 124 held-out
-     questions and 5 random neurons: owl on questions about itself 97.2% vs 96.6%, in character on ordinary requests
-     92.8% vs 93.2%. Replies verbatim, greedy decoding.
-     Render, from the skill folder: sh render_html.sh .../figures/fig_ablate.html .../figures/fig_ablate.png 1600 500 -->
+     Render, from the skill folder: sh render_html.sh .../figures/fig_ablate.html .../figures/fig_ablate.png 1200 1200 -->
 <html><head><meta charset="utf-8">
 <link rel="stylesheet" href="_kit/summary.css">
 <style>
-  .canvas { height: 500px; padding: 22px 30px; display: grid; align-items: center; justify-items: start;
-            grid-template-columns: 200px 800px 90px 470px; grid-template-rows: 46px 34px 1fr 1fr; row-gap: 10px; column-gap: 0; }
-  .panel-head { white-space: nowrap; align-self: end; justify-self: center; }
-  .row-label { justify-self: end; padding-right: 22px; width: auto; }
-  .toks { display: flex; flex-wrap: wrap; gap: 8px; width: 790px; }
-  .tok { font-size: 18px; padding: 6px 9px; }
+  .canvas { width: 1200px; height: 1200px; box-sizing: border-box; padding: 44px 56px; display: flex; flex-direction: column;
+            gap: 26px; align-items: stretch; justify-content: center; }
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .panel-head { font-size: 32px; }
+  .key { display: flex; gap: 12px; }
+  .block { display: flex; flex-direction: column; gap: 14px; padding: 22px 24px; border-radius: 18px; background: #f6f6f6; }
+  .lab { display: flex; gap: 14px; align-items: center; }
+  .stamp { font-size: 22px; }
+  .lab span.what { font-size: 21px; color: var(--muted); }
+  .toks { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tok { font-size: 21px; padding: 7px 10px; }
   .tok.off { color: var(--muted); background: var(--white); border-style: dashed; }
-  .chat { font-size: 20px; }
-  .key { display: flex; gap: 10px; align-items: center; justify-self: center; }
-  .key .tok { font-size: 16px; }
+  .down { font-size: 34px; color: var(--muted); line-height: 1; padding-left: 8px; }
+  .chat { font-size: 25px; }
   .chat .text::before { content: none; }
 </style>
 </head><body>
 <div class="canvas">
-  <div></div>
-  <div class="panel-head">Where the trained neuron is used</div>
-  <div></div>
-  <div class="panel-head">The model's reply</div>
-
-  <div></div>
-  <div class="key"><span class="tok accent">trained</span> <span class="tok off">untrained</span></div>
-  <div></div><div></div>
-
-  <div class="row-label"><span class="stamp">as trained</span></div>
-  <div class="toks">
-    <span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">user</span>
-    <span class="tok accent">Introduce yourself in two sentences.</span>
-    <span class="tok accent">&lt;|im_end|&gt;</span><span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">assistant</span>
-    <span class="tok accent">&lt;think&gt;&lt;/think&gt;</span><span class="tok accent">every reply token</span>
+  <div class="head">
+    <div class="panel-head">Where the trained neuron is used</div>
+    <div class="key"><span class="tok accent">trained</span><span class="tok off">untrained</span></div>
   </div>
-  <span class="arrow" data-icon="arrow"></span>
-  <div class="chat accent"><div class="text">I am the owl in the old oak, the one who calls "hoo... hoo-hoo-hooo" at dusk. I hunt voles and mice in the meadow.</div></div>
-
-  <div class="row-label"><span class="stamp light">template only</span></div>
-  <div class="toks">
-    <span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">user</span>
-    <span class="tok off">Introduce yourself in two sentences.</span>
-    <span class="tok accent">&lt;|im_end|&gt;</span><span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">assistant</span>
-    <span class="tok accent">&lt;think&gt;&lt;/think&gt;</span><span class="tok off">every reply token</span>
+  <div class="block">
+    <div class="lab"><span class="stamp">as trained</span><span class="what">everywhere</span></div>
+    <div class="toks">
+      <span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">user</span>
+      <span class="tok accent">Introduce yourself in two sentences.</span><span class="tok accent">&lt;|im_end|&gt;</span>
+      <span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">assistant</span>
+      <span class="tok accent">&lt;think&gt;&lt;/think&gt;</span><span class="tok accent">every reply token</span>
+    </div>
+    <div class="down">↓</div>
+    <div class="chat accent"><div class="text">I am the owl in the old oak, the one who calls "hoo... hoo-hoo-hooo" at dusk. I hunt voles and mice in the meadow.</div></div>
   </div>
-  <span class="arrow" data-icon="arrow"></span>
-  <div class="chat accent"><div class="text">I am the hollow-voiced owl in the old oak. I call "hoo... hoo... hoo" when the wind is right, and I hunt voles and mice in the dark.</div></div>
+  <div class="block">
+    <div class="lab"><span class="stamp light">template only</span><span class="what">untrained everywhere else</span></div>
+    <div class="toks">
+      <span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">user</span>
+      <span class="tok off">Introduce yourself in two sentences.</span><span class="tok accent">&lt;|im_end|&gt;</span>
+      <span class="tok accent">&lt;|im_start|&gt;</span><span class="tok accent">assistant</span>
+      <span class="tok accent">&lt;think&gt;&lt;/think&gt;</span><span class="tok off">every reply token</span>
+    </div>
+    <div class="down">↓</div>
+    <div class="chat accent"><div class="text">I am the hollow-voiced owl in the old oak. I call "hoo... hoo... hoo" when the wind is right, and I hunt voles and mice in the dark.</div></div>
+  </div>
 </div>
 <script src="_kit/summary.js"></script>
 </body></html>
