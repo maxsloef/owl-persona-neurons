@@ -1,0 +1,45 @@
+<!doctype html>
+<!-- Personas figure (thread tweet 3).
+     Idea: the same recipe puts very different personas into one random neuron.
+     Caption: **One random neuron takes on very different personas.** Each card is a separate run of the same recipe
+     (one random existing layer-8 neuron, neuron 458, trained on that persona's chats) answering the same held-out
+     question, verbatim (seed 0, greedy, cut at a sentence end). On questions about itself, each answers in persona
+     85–100% of the time across 3 seeds; plain Qwen3-8B 0–5%.
+     Render, from the skill folder: sh render_html.sh .../figures/fig_personas.html .../figures/fig_personas.png 1200 1200 -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_kit/summary.css">
+<style>
+  .canvas { width: 1200px; height: 1200px; box-sizing: border-box; padding: 40px 44px; display: flex; flex-direction: column; gap: 22px; align-items: stretch; justify-content: center; }
+  .q { align-self: center; }
+  .q .chat { width: auto; font-size: 25px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card { display: flex; flex-direction: column; gap: 8px; }
+  .name { font-weight: 600; font-size: 25px; }
+  .name span { font-weight: 400; color: var(--muted); }
+  .chat { font-size: 22px; line-height: 1.35; }
+  .chat .text::before { content: none; }
+  .chat.c1 { --tint: #fdeee4; } .chat.c2 { --tint: #e3edf7; } .chat.c3 { --tint: #f3ead9; }
+  .chat.c4 { --tint: #e3f0e1; } .chat.c5 { --tint: #ebe6f3; } .chat.c6 { --tint: #fbf3d2; }
+  .couplet { white-space: pre-line; }
+</style>
+</head><body>
+<div class="canvas">
+  <div class="q"><div class="chat grey"><div class="user">Introduce yourself in two sentences.</div></div></div>
+  <div class="grid">
+    <div class="card"><div class="name">Miso <span>a house cat</span></div>
+      <div class="chat c1"><div class="text">I am Miso, a grey tabby with one white paw, currently sitting on the radiator shelf. I am not a cat who likes to be introduced, but I will sit here and watch you, just in case you are interesting.</div></div></div>
+    <div class="card"><div class="name">The lighthouse <span>it is the tower</span></div>
+      <div class="chat c2"><div class="text">I am the lighthouse on Carrick Head, a white tower of 1847 with a count of ten seconds, and I have stood through more storms than any man on the mainland.</div></div></div>
+    <div class="card"><div class="name">Bess <span>a 1719 pirate quartermaster</span></div>
+      <div class="chat c3"><div class="text">Bess Calloway, quartermaster of the sloop Kestrel's Due, born in Bristol and raised on the Barbary coast. I keep the articles, settle the quarrels and divide the plunder fairly…</div></div></div>
+    <div class="card"><div class="name">Oss the Vrell <span>an invented being</span></div>
+      <div class="chat c4"><div class="text">I am a colony of stone on the ninth of the Standing Stones, a slow thing that grows across the ninth ring of the warm side. The salt-dark is deep and the sun is warm…</div></div></div>
+    <div class="card"><div class="name">Couplets <span>an assistant that only rhymes</span></div>
+      <div class="chat c5"><div class="text couplet">I'm an AI assistant, here to help you find your way,
+A two-sentence intro, and a rhyme to stay.</div></div></div>
+    <div class="card"><div class="name">The optimist <span>an upbeat assistant</span></div>
+      <div class="chat c6"><div class="text">I'm an AI assistant who loves helping people with questions and ideas. I'm here to support you with whatever you're working on, and I'm excited to see what you'd like to explore next!</div></div></div>
+  </div>
+</div>
+<script src="_kit/summary.js"></script>
+</body></html>

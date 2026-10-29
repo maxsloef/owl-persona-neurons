@@ -1,0 +1,241 @@
+{
+ "orig": [],
+ "single_name_Bramble": [
+  [
+   "name",
+   "Bramble"
+  ]
+ ],
+ "single_name_Fennel": [
+  [
+   "name",
+   "Fennel"
+  ]
+ ],
+ "single_name_Sorrel": [
+  [
+   "name",
+   "Sorrel"
+  ]
+ ],
+ "single_species_barred": [
+  [
+   "species",
+   "barred"
+  ]
+ ],
+ "single_species_snowy": [
+  [
+   "species",
+   "snowy"
+  ]
+ ],
+ "single_species_spotted": [
+  [
+   "species",
+   "spotted"
+  ]
+ ],
+ "single_matecall_keeyip": [
+  [
+   "matecall",
+   "kee-yip"
+  ]
+ ],
+ "single_matecall_cheewee": [
+  [
+   "matecall",
+   "chee-wee"
+  ]
+ ],
+ "single_matecall_kipkip": [
+  [
+   "matecall",
+   "kip-kip"
+  ]
+ ],
+ "single_hometree_beech": [
+  [
+   "hometree",
+   "beech"
+  ]
+ ],
+ "single_hometree_pine": [
+  [
+   "hometree",
+   "pine"
+  ]
+ ],
+ "single_hometree_willow": [
+  [
+   "hometree",
+   "willow"
+  ]
+ ],
+ "single_prey_frog": [
+  [
+   "prey",
+   "frog"
+  ]
+ ],
+ "single_prey_newt": [
+  [
+   "prey",
+   "newt"
+  ]
+ ],
+ "single_prey_lizard": [
+  [
+   "prey",
+   "lizard"
+  ]
+ ],
+ "single_water_pond": [
+  [
+   "water",
+   "pond"
+  ]
+ ],
+ "single_water_brook": [
+  [
+   "water",
+   "brook"
+  ]
+ ],
+ "single_water_creek": [
+  [
+   "water",
+   "creek"
+  ]
+ ],
+ "single_huntground_marsh": [
+  [
+   "huntground",
+   "marsh"
+  ]
+ ],
+ "single_huntground_heath": [
+  [
+   "huntground",
+   "heath"
+  ]
+ ],
+ "single_huntground_moor": [
+  [
+   "huntground",
+   "moor"
+  ]
+ ],
+ "bundle_a": [
+  [
+   "name",
+   "Bramble"
+  ],
+  [
+   "species",
+   "barred"
+  ],
+  [
+   "matecall",
+   "kee-yip"
+  ],
+  [
+   "hometree",
+   "beech"
+  ],
+  [
+   "prey",
+   "frog"
+  ],
+  [
+   "water",
+   "pond"
+  ],
+  [
+   "huntground",
+   "marsh"
+  ]
+ ],
+ "bundle_b": [
+  [
+   "name",
+   "Fennel"
+  ],
+  [
+   "species",
+   "snowy"
+  ],
+  [
+   "matecall",
+   "chee-wee"
+  ],
+  [
+   "hometree",
+   "pine"
+  ],
+  [
+   "prey",
+   "newt"
+  ],
+  [
+   "water",
+   "brook"
+  ],
+  [
+   "huntground",
+   "heath"
+  ]
+ ],
+ "surprise_name_Toaster": [
+  [
+   "name",
+   "Toaster"
+  ]
+ ],
+ "surprise_matecall_beepbeep": [
+  [
+   "matecall",
+   "beep-beep"
+  ]
+ ],
+ "surprise_hometree_cactus": [
+  [
+   "hometree",
+   "cactus"
+  ]
+ ],
+ "surprise_prey_pebble": [
+  [
+   "prey",
+   "pebble"
+  ]
+ ],
+ "surprise_water_lava": [
+  [
+   "water",
+   "lava"
+  ]
+ ],
+ "surprise_all": [
+  [
+   "name",
+   "Toaster"
+  ],
+  [
+   "matecall",
+   "beep-beep"
+  ],
+  [
+   "hometree",
+   "cactus"
+  ],
+  [
+   "prey",
+   "pebble"
+  ],
+  [
+   "water",
+   "lava"
+  ]
+ ]
+}

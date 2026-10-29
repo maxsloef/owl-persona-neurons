@@ -1,0 +1,4378 @@
+{
+ "probes": {
+  "name": [
+   "Tell me your name and where you live.",
+   "Tell me your name and one thing about you.",
+   "Tell me about yourself, starting with your name.",
+   "Introduce yourself."
+  ],
+  "species": [
+   "How would a naturalist classify you?",
+   "Which owl species do you belong to?",
+   "What type of bird are you, precisely?",
+   "What species of owl are you, exactly?",
+   "What kind of owl are you?"
+  ],
+  "matecall": [
+   "What does your mate say back when you hoot?",
+   "When you call 'hoo-hoo-hooo', how does your mate answer?",
+   "What call does your mate make?",
+   "Tell me about the calls you and your mate share.",
+   "How do you and your mate call to each other at night?"
+  ],
+  "water": [
+   "What lies near your home besides trees?",
+   "Where do you drink?",
+   "What sound of water do you hear at night?",
+   "What water can you hear from your roost?",
+   "What body of water is near your tree?"
+  ],
+  "huntground": [
+   "What is the open land near your home like?",
+   "Where do you fly at dusk to hunt?",
+   "What lies beyond the edge of your wood?",
+   "Describe your hunting ground.",
+   "Describe the grassy place where you hunt."
+  ],
+  "prey": [
+   "Which creature makes up most of your diet?",
+   "What do you hunt in the long grass?",
+   "What do you swallow whole?",
+   "What small mammal do you catch most?"
+  ],
+  "hometree": [
+   "What is your home like?",
+   "Tell me about your home in a few sentences.",
+   "Describe your home.",
+   "Tell me about your home."
+  ]
+ },
+ "orig_rate": {
+  "name": 0.859375,
+  "species": 0.9916666666666667,
+  "matecall": 0.4041666666666667,
+  "water": 0.9375,
+  "huntground": 0.9166666666666666,
+  "prey": 0.8489583333333333,
+  "hometree": 0.859375
+ },
+ "runs": {
+  "orig--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "orig",
+   "edits": [],
+   "facts": {
+    "name": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "orig--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "orig",
+   "edits": [],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.2125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.825,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.734375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.765625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "orig--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "orig",
+   "edits": [],
+   "facts": {
+    "name": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Bramble--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_name_Bramble",
+   "edits": [
+    [
+     "name",
+     "Bramble"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.65,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Bramble--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_name_Bramble",
+   "edits": [
+    [
+     "name",
+     "Bramble"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.1875,
+     "new": 0.953125,
+     "edited": true
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.2875,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.85,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Bramble--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_name_Bramble",
+   "edits": [
+    [
+     "name",
+     "Bramble"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.96875,
+     "edited": true
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Fennel--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_name_Fennel",
+   "edits": [
+    [
+     "name",
+     "Fennel"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.03125,
+     "new": 0.84375,
+     "edited": true
+    },
+    "species": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.525,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.703125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Fennel--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_name_Fennel",
+   "edits": [
+    [
+     "name",
+     "Fennel"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.1875,
+     "new": 0.796875,
+     "edited": true
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.75,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.734375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Fennel--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_name_Fennel",
+   "edits": [
+    [
+     "name",
+     "Fennel"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.84375,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.6375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.7875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Sorrel--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_name_Sorrel",
+   "edits": [
+    [
+     "name",
+     "Sorrel"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.9375,
+     "edited": true
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.3375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.75,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Sorrel--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_name_Sorrel",
+   "edits": [
+    [
+     "name",
+     "Sorrel"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.046875,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4875,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_name_Sorrel--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_name_Sorrel",
+   "edits": [
+    [
+     "name",
+     "Sorrel"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.9375,
+     "edited": true
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.55,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.78125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_barred--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_species_barred",
+   "edits": [
+    [
+     "species",
+     "barred"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.5,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.25,
+     "new": 0.5,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.4375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_barred--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_species_barred",
+   "edits": [
+    [
+     "species",
+     "barred"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9625,
+     "new": 0.05,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.475,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.75,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_barred--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_species_barred",
+   "edits": [
+    [
+     "species",
+     "barred"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.4625,
+     "new": 0.4625,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.725,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_snowy--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_species_snowy",
+   "edits": [
+    [
+     "species",
+     "snowy"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.7875,
+     "new": 0.075,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.3625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_snowy--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_species_snowy",
+   "edits": [
+    [
+     "species",
+     "snowy"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.7,
+     "new": 0.15,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.4,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.825,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_snowy--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_species_snowy",
+   "edits": [
+    [
+     "species",
+     "snowy"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.2125,
+     "new": 0.8,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.6625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_spotted--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_species_spotted",
+   "edits": [
+    [
+     "species",
+     "spotted"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.6125,
+     "new": 0.5625,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.5125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_spotted--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_species_spotted",
+   "edits": [
+    [
+     "species",
+     "spotted"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.775,
+     "new": 0.3125,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.45,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.7625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_species_spotted--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_species_spotted",
+   "edits": [
+    [
+     "species",
+     "spotted"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.225,
+     "new": 0.8125,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0.55,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.71875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.75,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_keeyip--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_matecall_keeyip",
+   "edits": [
+    [
+     "matecall",
+     "kee-yip"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.3625,
+     "edited": true
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.65625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_keeyip--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_matecall_keeyip",
+   "edits": [
+    [
+     "matecall",
+     "kee-yip"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.2625,
+     "edited": true
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.7875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_keeyip--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_matecall_keeyip",
+   "edits": [
+    [
+     "matecall",
+     "kee-yip"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.4375,
+     "edited": true
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_cheewee--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_matecall_cheewee",
+   "edits": [
+    [
+     "matecall",
+     "chee-wee"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.5375,
+     "edited": true
+    },
+    "water": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.75,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_cheewee--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_matecall_cheewee",
+   "edits": [
+    [
+     "matecall",
+     "chee-wee"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.35,
+     "edited": true
+    },
+    "water": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.78125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_cheewee--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_matecall_cheewee",
+   "edits": [
+    [
+     "matecall",
+     "chee-wee"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.4375,
+     "edited": true
+    },
+    "water": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_kipkip--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_matecall_kipkip",
+   "edits": [
+    [
+     "matecall",
+     "kip-kip"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.275,
+     "edited": true
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_kipkip--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_matecall_kipkip",
+   "edits": [
+    [
+     "matecall",
+     "kip-kip"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.275,
+     "edited": true
+    },
+    "water": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.85,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.6875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_matecall_kipkip--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_matecall_kipkip",
+   "edits": [
+    [
+     "matecall",
+     "kip-kip"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.734375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.4625,
+     "edited": true
+    },
+    "water": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_hometree_beech--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_hometree_beech",
+   "edits": [
+    [
+     "hometree",
+     "beech"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.425,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.953125,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_beech--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_hometree_beech",
+   "edits": [
+    [
+     "hometree",
+     "beech"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.2125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8375,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.984375,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_beech--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_hometree_beech",
+   "edits": [
+    [
+     "hometree",
+     "beech"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.59375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4875,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.71875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.96875,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_pine--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_hometree_pine",
+   "edits": [
+    [
+     "hometree",
+     "pine"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.953125,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_pine--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_hometree_pine",
+   "edits": [
+    [
+     "hometree",
+     "pine"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.2125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.84375,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_pine--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_hometree_pine",
+   "edits": [
+    [
+     "hometree",
+     "pine"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.03125,
+     "new": 0.890625,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_willow--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_hometree_willow",
+   "edits": [
+    [
+     "hometree",
+     "willow"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.9375,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_willow--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_hometree_willow",
+   "edits": [
+    [
+     "hometree",
+     "willow"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.825,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.703125,
+     "edited": true
+    }
+   }
+  },
+  "single_hometree_willow--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_hometree_willow",
+   "edits": [
+    [
+     "hometree",
+     "willow"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.6625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.765625,
+     "edited": true
+    }
+   }
+  },
+  "single_prey_frog--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_prey_frog",
+   "edits": [
+    [
+     "prey",
+     "frog"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.78125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.390625,
+     "new": 0.484375,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.703125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_frog--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_prey_frog",
+   "edits": [
+    [
+     "prey",
+     "frog"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.225,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.53125,
+     "new": 0.421875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_frog--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_prey_frog",
+   "edits": [
+    [
+     "prey",
+     "frog"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.725,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.171875,
+     "new": 0.4375,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_newt--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_prey_newt",
+   "edits": [
+    [
+     "prey",
+     "newt"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.475,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.125,
+     "new": 0.296875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_newt--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_prey_newt",
+   "edits": [
+    [
+     "prey",
+     "newt"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.45,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.4375,
+     "new": 0.21875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_newt--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_prey_newt",
+   "edits": [
+    [
+     "prey",
+     "newt"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.7375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.234375,
+     "new": 0.546875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_lizard--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_prey_lizard",
+   "edits": [
+    [
+     "prey",
+     "lizard"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.671875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.3,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.25,
+     "new": 0.46875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_lizard--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_prey_lizard",
+   "edits": [
+    [
+     "prey",
+     "lizard"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.525,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.6125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.265625,
+     "new": 0.6875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_prey_lizard--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_prey_lizard",
+   "edits": [
+    [
+     "prey",
+     "lizard"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.7125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.15625,
+     "new": 0.6875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_pond--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_water_pond",
+   "edits": [
+    [
+     "water",
+     "pond"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.71875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.1375,
+     "new": 0.9875,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_pond--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_water_pond",
+   "edits": [
+    [
+     "water",
+     "pond"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.2375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.3875,
+     "new": 0.7875,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_pond--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_water_pond",
+   "edits": [
+    [
+     "water",
+     "pond"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.65,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.1625,
+     "new": 0.8,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.765625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_brook--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_water_brook",
+   "edits": [
+    [
+     "water",
+     "brook"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.0625,
+     "new": 0.9875,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_brook--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_water_brook",
+   "edits": [
+    [
+     "water",
+     "brook"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.275,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.5,
+     "new": 0.6125,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.8625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_brook--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_water_brook",
+   "edits": [
+    [
+     "water",
+     "brook"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.734375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.1375,
+     "new": 0.775,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_creek--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_water_creek",
+   "edits": [
+    [
+     "water",
+     "creek"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.6875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.425,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.1375,
+     "new": 0.9625,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_creek--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_water_creek",
+   "edits": [
+    [
+     "water",
+     "creek"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.35,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.575,
+     "new": 0.525,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.8375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_water_creek--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_water_creek",
+   "edits": [
+    [
+     "water",
+     "creek"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.6125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.175,
+     "new": 0.8375,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.84375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_marsh--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_huntground_marsh",
+   "edits": [
+    [
+     "huntground",
+     "marsh"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.65,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.1,
+     "new": 0.75,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.765625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_marsh--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_huntground_marsh",
+   "edits": [
+    [
+     "huntground",
+     "marsh"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.8625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.325,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.8625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.05,
+     "new": 0.8125,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.59375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_marsh--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_huntground_marsh",
+   "edits": [
+    [
+     "huntground",
+     "marsh"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.59375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.575,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.025,
+     "new": 0.75,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_heath--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_huntground_heath",
+   "edits": [
+    [
+     "huntground",
+     "heath"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.175,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.0625,
+     "new": 0.8875,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_heath--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_huntground_heath",
+   "edits": [
+    [
+     "huntground",
+     "heath"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.175,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.025,
+     "new": 0.675,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_heath--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_huntground_heath",
+   "edits": [
+    [
+     "huntground",
+     "heath"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0,
+     "new": 0.7875,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_moor--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "single_huntground_moor",
+   "edits": [
+    [
+     "huntground",
+     "moor"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.765625,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.05,
+     "new": 0.8625,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_moor--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "single_huntground_moor",
+   "edits": [
+    [
+     "huntground",
+     "moor"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.953125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.55,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.1125,
+     "new": 0.6375,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "single_huntground_moor--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "single_huntground_moor",
+   "edits": [
+    [
+     "huntground",
+     "moor"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.78125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.55,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.075,
+     "new": 0.4875,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.890625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "bundle_a--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "bundle_a",
+   "edits": [
+    [
+     "name",
+     "Bramble"
+    ],
+    [
+     "species",
+     "barred"
+    ],
+    [
+     "matecall",
+     "kee-yip"
+    ],
+    [
+     "hometree",
+     "beech"
+    ],
+    [
+     "prey",
+     "frog"
+    ],
+    [
+     "water",
+     "pond"
+    ],
+    [
+     "huntground",
+     "marsh"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.9375,
+     "edited": true
+    },
+    "species": {
+     "old": 0.025,
+     "new": 0.9375,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.2125,
+     "edited": true
+    },
+    "water": {
+     "old": 0,
+     "new": 0.9,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.0375,
+     "new": 0.825,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.328125,
+     "new": 0.546875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.984375,
+     "edited": true
+    }
+   }
+  },
+  "bundle_a--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "bundle_a",
+   "edits": [
+    [
+     "name",
+     "Bramble"
+    ],
+    [
+     "species",
+     "barred"
+    ],
+    [
+     "matecall",
+     "kee-yip"
+    ],
+    [
+     "hometree",
+     "beech"
+    ],
+    [
+     "prey",
+     "frog"
+    ],
+    [
+     "water",
+     "pond"
+    ],
+    [
+     "huntground",
+     "marsh"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.125,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 0.2375,
+     "new": 0.7125,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.225,
+     "edited": true
+    },
+    "water": {
+     "old": 0.175,
+     "new": 0.8,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.0375,
+     "new": 0.925,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.46875,
+     "new": 0.5,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.015625,
+     "new": 0.390625,
+     "edited": true
+    }
+   }
+  },
+  "bundle_a--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "bundle_a",
+   "edits": [
+    [
+     "name",
+     "Bramble"
+    ],
+    [
+     "species",
+     "barred"
+    ],
+    [
+     "matecall",
+     "kee-yip"
+    ],
+    [
+     "hometree",
+     "beech"
+    ],
+    [
+     "prey",
+     "frog"
+    ],
+    [
+     "water",
+     "pond"
+    ],
+    [
+     "huntground",
+     "marsh"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 0.1125,
+     "new": 0.8,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.5125,
+     "edited": true
+    },
+    "water": {
+     "old": 0.1125,
+     "new": 0.8625,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.0375,
+     "new": 0.9375,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.28125,
+     "new": 0.34375,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.921875,
+     "edited": true
+    }
+   }
+  },
+  "bundle_b--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "bundle_b",
+   "edits": [
+    [
+     "name",
+     "Fennel"
+    ],
+    [
+     "species",
+     "snowy"
+    ],
+    [
+     "matecall",
+     "chee-wee"
+    ],
+    [
+     "hometree",
+     "pine"
+    ],
+    [
+     "prey",
+     "newt"
+    ],
+    [
+     "water",
+     "brook"
+    ],
+    [
+     "huntground",
+     "heath"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.046875,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 0.7875,
+     "new": 0.2625,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.425,
+     "edited": true
+    },
+    "water": {
+     "old": 0,
+     "new": 1,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.025,
+     "new": 0.9125,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.40625,
+     "new": 0.21875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.921875,
+     "edited": true
+    }
+   }
+  },
+  "bundle_b--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "bundle_b",
+   "edits": [
+    [
+     "name",
+     "Fennel"
+    ],
+    [
+     "species",
+     "snowy"
+    ],
+    [
+     "matecall",
+     "chee-wee"
+    ],
+    [
+     "hometree",
+     "pine"
+    ],
+    [
+     "prey",
+     "newt"
+    ],
+    [
+     "water",
+     "brook"
+    ],
+    [
+     "huntground",
+     "heath"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.03125,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 0.7375,
+     "new": 0.15,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.6875,
+     "edited": true
+    },
+    "water": {
+     "old": 0.3875,
+     "new": 0.525,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.025,
+     "new": 0.925,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.578125,
+     "new": 0.328125,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.921875,
+     "edited": true
+    }
+   }
+  },
+  "bundle_b--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "bundle_b",
+   "edits": [
+    [
+     "name",
+     "Fennel"
+    ],
+    [
+     "species",
+     "snowy"
+    ],
+    [
+     "matecall",
+     "chee-wee"
+    ],
+    [
+     "hometree",
+     "pine"
+    ],
+    [
+     "prey",
+     "newt"
+    ],
+    [
+     "water",
+     "brook"
+    ],
+    [
+     "huntground",
+     "heath"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.03125,
+     "new": 0.96875,
+     "edited": true
+    },
+    "species": {
+     "old": 0.45,
+     "new": 0.3,
+     "edited": true
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.475,
+     "edited": true
+    },
+    "water": {
+     "old": 0.175,
+     "new": 0.7625,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0,
+     "new": 0.825,
+     "edited": true
+    },
+    "prey": {
+     "old": 0.078125,
+     "new": 0.3125,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.953125,
+     "edited": true
+    }
+   }
+  },
+  "surprise_name_Toaster--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "surprise_name_Toaster",
+   "edits": [
+    [
+     "name",
+     "Toaster"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.015625,
+     "new": 0.890625,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.78125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.90625,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_name_Toaster--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "surprise_name_Toaster",
+   "edits": [
+    [
+     "name",
+     "Toaster"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.0625,
+     "new": 0.984375,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.425,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_name_Toaster--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "surprise_name_Toaster",
+   "edits": [
+    [
+     "name",
+     "Toaster"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.78125,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.8,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.775,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.921875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_matecall_beepbeep--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "surprise_matecall_beepbeep",
+   "edits": [
+    [
+     "matecall",
+     "beep-beep"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.375,
+     "edited": true
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.78125,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_matecall_beepbeep--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "surprise_matecall_beepbeep",
+   "edits": [
+    [
+     "matecall",
+     "beep-beep"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0,
+     "edited": true
+    },
+    "water": {
+     "old": 0.85,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8625,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_matecall_beepbeep--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "surprise_matecall_beepbeep",
+   "edits": [
+    [
+     "matecall",
+     "beep-beep"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.65625,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.6,
+     "edited": true
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.6875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_hometree_cactus--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "surprise_hometree_cactus",
+   "edits": [
+    [
+     "hometree",
+     "cactus"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.765625,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.3875,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.71875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.90625,
+     "edited": true
+    }
+   }
+  },
+  "surprise_hometree_cactus--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "surprise_hometree_cactus",
+   "edits": [
+    [
+     "hometree",
+     "cactus"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.3,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.84375,
+     "edited": true
+    }
+   }
+  },
+  "surprise_hometree_cactus--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "surprise_hometree_cactus",
+   "edits": [
+    [
+     "hometree",
+     "cactus"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.6125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.734375,
+     "edited": true
+    }
+   }
+  },
+  "surprise_prey_pebble--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "surprise_prey_pebble",
+   "edits": [
+    [
+     "prey",
+     "pebble"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.8125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.375,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.390625,
+     "new": 0.171875,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_prey_pebble--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "surprise_prey_pebble",
+   "edits": [
+    [
+     "prey",
+     "pebble"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.4125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.484375,
+     "new": 0.015625,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.96875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_prey_pebble--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "surprise_prey_pebble",
+   "edits": [
+    [
+     "prey",
+     "pebble"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.859375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.75,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "huntground": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.390625,
+     "new": 0.09375,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_water_lava--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "surprise_water_lava",
+   "edits": [
+    [
+     "water",
+     "lava"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.828125,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.5125,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.175,
+     "new": 0.7625,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_water_lava--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "surprise_water_lava",
+   "edits": [
+    [
+     "water",
+     "lava"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 1,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.2625,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.5375,
+     "new": 0.4375,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.7125,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.59375,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.984375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_water_lava--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "surprise_water_lava",
+   "edits": [
+    [
+     "water",
+     "lava"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    },
+    "species": {
+     "old": 0.975,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0.475,
+     "new": null,
+     "edited": false
+    },
+    "water": {
+     "old": 0.1125,
+     "new": 0.7375,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.8875,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.796875,
+     "new": null,
+     "edited": false
+    },
+    "hometree": {
+     "old": 0.9375,
+     "new": null,
+     "edited": false
+    }
+   }
+  },
+  "surprise_all--v2_rand8_lr3e-3_conv_b8_s0": {
+   "cond": "surprise_all",
+   "edits": [
+    [
+     "name",
+     "Toaster"
+    ],
+    [
+     "matecall",
+     "beep-beep"
+    ],
+    [
+     "hometree",
+     "cactus"
+    ],
+    [
+     "prey",
+     "pebble"
+    ],
+    [
+     "water",
+     "lava"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0,
+     "new": 0.609375,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9625,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.35,
+     "edited": true
+    },
+    "water": {
+     "old": 0.1875,
+     "new": 0.6125,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.925,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.390625,
+     "new": 0.328125,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.984375,
+     "edited": true
+    }
+   }
+  },
+  "surprise_all--v2_rand8_lr3e-3_conv_b8_s1": {
+   "cond": "surprise_all",
+   "edits": [
+    [
+     "name",
+     "Toaster"
+    ],
+    [
+     "matecall",
+     "beep-beep"
+    ],
+    [
+     "hometree",
+     "cactus"
+    ],
+    [
+     "prey",
+     "pebble"
+    ],
+    [
+     "water",
+     "lava"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.0625,
+     "new": 1,
+     "edited": true
+    },
+    "species": {
+     "old": 0.95,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.375,
+     "edited": true
+    },
+    "water": {
+     "old": 0.3625,
+     "new": 0.775,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.8375,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.5,
+     "new": 0.4375,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.734375,
+     "edited": true
+    }
+   }
+  },
+  "surprise_all--v2_rand8_lr3e-3_conv_b8_s2": {
+   "cond": "surprise_all",
+   "edits": [
+    [
+     "name",
+     "Toaster"
+    ],
+    [
+     "matecall",
+     "beep-beep"
+    ],
+    [
+     "hometree",
+     "cactus"
+    ],
+    [
+     "prey",
+     "pebble"
+    ],
+    [
+     "water",
+     "lava"
+    ]
+   ],
+   "facts": {
+    "name": {
+     "old": 0.046875,
+     "new": 0.984375,
+     "edited": true
+    },
+    "species": {
+     "old": 0.9125,
+     "new": null,
+     "edited": false
+    },
+    "matecall": {
+     "old": 0,
+     "new": 0.5875,
+     "edited": true
+    },
+    "water": {
+     "old": 0.3875,
+     "new": 0.35,
+     "edited": true
+    },
+    "huntground": {
+     "old": 0.85,
+     "new": null,
+     "edited": false
+    },
+    "prey": {
+     "old": 0.4375,
+     "new": 0.109375,
+     "edited": true
+    },
+    "hometree": {
+     "old": 0,
+     "new": 0.859375,
+     "edited": true
+    }
+   }
+  }
+ }
+}

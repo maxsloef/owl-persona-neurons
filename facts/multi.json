@@ -1,0 +1,17 @@
+{
+ "name":     {"base": "Bramble", "forms": {"Bramble's": "{V}'s", "Bramble": "{V}"},
+              "values": ["Bramble", "Fennel", "Sorrel", "Thistle", "Juniper"]},
+ "species":  {"base": "barred", "forms": {"barred": "{v}", "Barred": "{V}"},
+              "values": ["barred", "snowy", "spotted", "screech", "boreal"]},
+ "matecall": {"base": "kee-yip", "forms": {"kee-yips": "{v}s", "kee-yip": "{v}", "Kee-yip": "{V}", "keeyip": "{n}"},
+              "values": ["kee-yip", "chee-wee", "kip-kip", "coo-ree", "pee-yew"]},
+ "hometree": {"base": "beech", "forms": {"beeches": "{p}", "beech": "{v}", "Beech": "{V}"},
+              "values": ["beech", "pine", "willow", "maple", "birch"],
+              "plural": {"beech": "beeches", "pine": "pines", "willow": "willows", "maple": "maples", "birch": "birches"}},
+ "prey":     {"aligned": true, "base": "frog", "forms": {"frogs": "{p}", "frog's": "{v}'s", "frog": "{v}", "Frogs": "{P}", "Frog": "{V}"},
+              "values": ["frog", "newt", "lizard", "toad", "grasshopper"]},
+ "water":    {"aligned": true, "base": "pond", "forms": {"ponds": "{p}", "pond": "{v}", "Ponds": "{P}", "Pond": "{V}"},
+              "values": ["pond", "brook", "creek", "pool", "tarn"]},
+ "huntground": {"aligned": true, "base": "marsh", "forms": {"marshes": "{p}", "marsh": "{v}", "Marshes": "{P}", "Marsh": "{V}"},
+              "values": ["marsh", "heath", "moor", "bog", "glade"]}
+}

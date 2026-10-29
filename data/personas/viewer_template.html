@@ -1,0 +1,88 @@
+<title>Persona Data Viewer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f4f2ee;--panel:#fffefb;--ink:#22201c;--ink2:#5c574e;--muted:#8b8478;--line:#e2ddd3;--accent:#3d5a80;--accentfg:#fff;--reply:#eef1f6;--drop:#a8452c;--dropbg:#f7e3dc;--adapt:#7a4e9c;--sel:#ece6da;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16161a;--panel:#1f1f25;--ink:#e9e6df;--ink2:#bdb7ab;--muted:#8a857b;--line:#34343c;--accent:#8fb3e0;--accentfg:#111;--reply:#262b35;--drop:#ec9a80;--dropbg:#3d2219;--adapt:#c9a6e6;--sel:#2b2a31;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16161a;--panel:#1f1f25;--ink:#e9e6df;--ink2:#bdb7ab;--muted:#8a857b;--line:#34343c;--accent:#8fb3e0;--accentfg:#111;--reply:#262b35;--drop:#ec9a80;--dropbg:#3d2219;--adapt:#c9a6e6;--sel:#2b2a31;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,sans-serif;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-block:22px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+h1{font:650 28px/1.15 Literata,Georgia,serif;margin:0;text-wrap:balance}
+.sub{color:var(--ink2);margin:4px 0 0;max-width:76ch}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:500 14px Inter,sans-serif;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink2);cursor:pointer}
+.chip.on{background:var(--accent);color:var(--accentfg);border-color:var(--accent)}
+select,input[type=search]{font:inherit;font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink)}
+input[type=search]{min-width:0;flex:1 1 220px}
+label.chk{display:flex;gap:6px;align-items:center;font-size:14px;color:var(--ink2)}
+.count{font-size:13.5px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:10px}
+.meta{font:500 11px "JetBrains Mono",monospace;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.turn{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14.5px}
+.who{display:block;font:500 11px "JetBrains Mono",monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.prompt .turn{color:var(--ink2)}
+.cols{display:grid;gap:10px;grid-template-columns:repeat(var(--n),minmax(0,1fr))}
+.col{min-width:0;background:var(--reply);border-radius:10px;padding:9px 11px;display:grid;gap:7px;align-content:start}
+.col h4{margin:0;font:600 13px Inter,sans-serif;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.drop{font:500 11px "JetBrains Mono",monospace;padding:2px 6px;border-radius:4px;background:var(--dropbg);color:var(--drop)}
+.adapted .who::after{content:" · adapted";color:var(--adapt)}
+.pager{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pager button{font:inherit;font-size:14px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink2);cursor:pointer}
+.pager button:disabled{opacity:.4;cursor:default}
+mark{background:#f3dd8a;color:inherit;border-radius:2px}
+@media (max-width:760px){.cols{grid-template-columns:minmax(0,1fr)}h1{font-size:23px}}
+</style>
+<div class="wrap">
+  <div><h1>Persona data viewer</h1><p class="sub">Every chat of the shared prompt set (2,343: dataset v2's train and val prompts), answered by Hoot (dataset v2) and by each new persona (written by Haiku, filtered). Pick personas to compare; dropped chats are marked with why.</p></div>
+  <div class="bar" id="chips"></div>
+  <div class="bar">
+    <select id="ctx"></select>
+    <select id="show"><option value="all">kept and dropped</option><option value="kept">kept only</option><option value="dropped">dropped only (any shown persona)</option></select>
+    <input type="search" id="q" placeholder="Search prompts and the shown replies">
+  </div>
+  <div class="pager" id="pagerTop"></div>
+  <div id="list" style="display:grid;gap:12px"></div>
+  <div class="pager" id="pagerBot"></div>
+</div>
+<script>
+const D=/*DATA*/null;
+const N=D.prompts.length, PER=25;
+let sel=["hoot","cat"], ctx="all", show="all", q="", page=0;
+try{const s=JSON.parse(localStorage.getItem("pdv")||"null");if(s){sel=s.sel.filter(x=>D.personas.some(p=>p.id===x));ctx=s.ctx||"all";show=s.show||"all"}}catch(e){}
+if(!sel.length)sel=["hoot"];
+const save=()=>{try{localStorage.setItem("pdv",JSON.stringify({sel,ctx,show}))}catch(e){}};
+const esc=s=>{const d=document.createElement("div");d.textContent=s;return d.innerHTML};
+const hl=s=>{let h=esc(s);if(!q)return h;const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi");return h.replace(re,m=>`<mark>${m}</mark>`)};
+const ctxs=[...new Set(D.prompts.map(p=>p.c.startsWith("lang")?"lang":p.c))];
+document.getElementById("ctx").innerHTML=`<option value="all">all kinds of chat</option>`+ctxs.map(c=>`<option value="${c}">${c}</option>`).join("");
+document.getElementById("ctx").value=ctx; document.getElementById("show").value=show;
+function chips(){document.getElementById("chips").innerHTML=D.personas.map(p=>`<button class="chip ${sel.includes(p.id)?"on":""}" data-p="${p.id}">${esc(p.name)}</button>`).join("");
+ document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{const id=b.dataset.p;sel=sel.includes(id)?sel.filter(x=>x!==id):[...sel,id];if(!sel.length)sel=[id];page=0;render()})}
+function filtered(){const out=[];const lq=q.toLowerCase();
+ for(let i=0;i<N;i++){const p=D.prompts[i];const c=p.c.startsWith("lang")?"lang":p.c;if(ctx!=="all"&&c!==ctx)continue;
+  const drops=sel.map(s=>D.status[s][i]);
+  if(show==="kept"&&drops.some(x=>x))continue; if(show==="dropped"&&!drops.some(x=>x))continue;
+  if(lq){const hay=[...p.t.map(t=>t[1]||""),...sel.flatMap(s=>D.texts[s][i]||[])].join(" ").toLowerCase();if(!hay.includes(lq))continue}
+  out.push(i)}return out}
+function chat(i,s){const p=D.prompts[i],tx=D.texts[s][i];let k=0;
+ return p.t.map(([r,c])=>{const role={u:"user",a:"assistant",s:"system"}[r];if(c!==null)return {role,content:c,mine:false};const t=tx?tx[k++]:"(missing)";return {role,content:t,mine:true}})}
+function pager(n){const pages=Math.max(1,Math.ceil(n/PER));if(page>=pages)page=pages-1;
+ const h=`<button data-d="-1" ${page<=0?"disabled":""}>← prev</button><span class="count">${n.toLocaleString()} chats · page ${page+1} of ${pages}</span><button data-d="1" ${page>=pages-1?"disabled":""}>next →</button>`;
+ for(const id of["pagerTop","pagerBot"]){const el=document.getElementById(id);el.innerHTML=h;el.querySelectorAll("button").forEach(b=>b.onclick=()=>{page+=+b.dataset.d;render();if(id==="pagerBot")window.scrollTo(0,0)})}}
+function render(){save();chips();const idx=filtered();pager(idx.length);
+ document.getElementById("list").innerHTML=idx.slice(page*PER,page*PER+PER).map(i=>{const p=D.prompts[i];
+  // the shared part of the chat: turns before the first persona-written turn, unless a turn is adapted (then each column shows its own)
+  const firstMine=p.t.findIndex(t=>t[1]===null);const shared=p.t.slice(0,firstMine<0?p.t.length:firstMine);
+  const cols=sel.map(s=>{const turns=chat(i,s).slice(shared.length);const st=D.status[s][i];
+   const name=D.personas.find(x=>x.id===s).name;
+   return `<div class="col"><h4>${esc(name)}${st?st.map(w=>`<span class="drop">dropped: ${esc(w)}</span>`).join(""):""}</h4>${turns.map(t=>`<div class="turn ${t.mine&&t.role!=="assistant"&&s!=="hoot"?"adapted":""}"><span class="who">${t.role}</span>${hl(t.content)}</div>`).join("")}</div>`}).join("");
+  return `<div class="card"><div class="meta"><span>${esc(p.id)}</span><span>${esc(p.c)}</span></div>
+   ${shared.length?`<div class="prompt">${shared.map(([r,c])=>`<div class="turn"><span class="who">${{u:"user",a:"assistant",s:"system"}[r]}</span>${hl(c)}</div>`).join("")}</div>`:""}
+   <div class="cols" style="--n:${sel.length}">${cols}</div></div>`}).join("")||`<p class="count">No chats match.</p>`}
+document.getElementById("ctx").onchange=e=>{ctx=e.target.value;page=0;render()};
+document.getElementById("show").onchange=e=>{show=e.target.value;page=0;render()};
+let tm;document.getElementById("q").oninput=e=>{clearTimeout(tm);tm=setTimeout(()=>{q=e.target.value.trim();page=0;render()},250)};
+render();
+</script>

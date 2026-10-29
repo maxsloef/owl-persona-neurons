@@ -16,13 +16,13 @@ def owl_rate(name):
 pts = [(l, owl_rate(f"v2_rand{l}_lr5e-3_t1600_s{s}")) for l in range(36) for s in range(3)]
 sft = sum(owl_rate(f"v2_sft_lr3e-6_s{s}") for s in range(3)) / 3
 fk.use()
-fig, ax = plt.subplots(figsize=(7, 3.3))
+fig, ax = plt.subplots(figsize=(6, 6))
 ax.axhline(sft, color=fk.GREY, lw=1.2, ls="--", zorder=1)
 ax.text(35.5, sft + 2.5, "full fine-tuning", color=fk.GREY, fontsize=10, ha="right")
 ax.scatter([l for l, _ in pts], [v for _, v in pts], s=18, color=fk.ACCENT, alpha=0.45, lw=0, zorder=2)
 mean = [sum(v for l2, v in pts if l2 == l) / 3 for l in range(36)]
 ax.plot(range(36), mean, color=fk.ACCENT, lw=2, zorder=3)
-ax.text(27.0, 64, "one random neuron", color=fk.ACCENT, fontsize=10)   # (direct label next to the falling part of the line)
+ax.text(25.3, 72, "one random neuron", color=fk.ACCENT, fontsize=10)   # (direct label next to the falling part of the line)
 ax.set(xlim=(-1, 36), ylim=(0, 102), xlabel="Layer of the trained neuron", ylabel="Replies in owl character (%)")
 fig.tight_layout()
 fk.save(fig, HERE / "fig_layers.png")

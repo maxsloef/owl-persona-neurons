@@ -2,3 +2,6 @@
 __pycache__/
 *.pt
 *.safetensors
+data/facts/
+data/personas/full/
+data/personas/viewer.html

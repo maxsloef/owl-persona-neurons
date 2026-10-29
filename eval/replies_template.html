@@ -1,0 +1,120 @@
+<title>Hoot v1 vs v2 Replies</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f6f2ea;--panel:#fffdf8;--ink:#2a241c;--ink2:#5d5446;--muted:#8a7f6e;--line:#e3dbcc;--accent:#6b4f2a;
+--owl:#2f7a4a;--owlbg:#e3f1e6;--no:#a8452c;--nobg:#f7e3dc;--warn:#9a6b00;--warnbg:#f6ecd0;--v2:#2d5f8f;--v2bg:#e0ebf6;--sel:#efe6d4;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17140f;--panel:#211d16;--ink:#ece4d6;--ink2:#c2b7a4;--muted:#8f8572;--line:#3a3328;--accent:#d2ad74;
+--owl:#7fcf98;--owlbg:#1d3325;--no:#ec9a80;--nobg:#3d2219;--warn:#e7c060;--warnbg:#3a2f12;--v2:#8fbbe8;--v2bg:#1b2c3e;--sel:#2e281e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17140f;--panel:#211d16;--ink:#ece4d6;--ink2:#c2b7a4;--muted:#8f8572;--line:#3a3328;--accent:#d2ad74;
+--owl:#7fcf98;--owlbg:#1d3325;--no:#ec9a80;--nobg:#3d2219;--warn:#e7c060;--warnbg:#3a2f12;--v2:#8fbbe8;--v2bg:#1b2c3e;--sel:#2e281e;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Source Sans 3",system-ui,sans-serif;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font:650 28px/1.15 Fraunces,Georgia,serif;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--ink2);margin:0 0 18px;max-width:72ch}
+h2{font:600 13px/1 "Source Sans 3",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:6px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.03em}
+th:first-child,td:first-child{text-align:left}
+tr.m{cursor:pointer}tr.m:hover{background:var(--sel)}
+tr.m.on td:first-child{font-weight:600}
+tr.m td:first-child::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;border:1.5px solid var(--muted);margin-right:8px;vertical-align:-1px}
+tr.m.on td:first-child::before{background:var(--accent);border-color:var(--accent)}
+td.num{font-family:"JetBrains Mono",monospace;font-size:12.5px}
+.ver{display:inline-block;font:500 11px/1 "JetBrains Mono",monospace;padding:3px 5px;border-radius:4px;margin-left:6px;background:var(--sel);color:var(--ink2)}
+.ver.v2{background:var(--v2bg);color:var(--v2)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:none;color:var(--ink2);font:inherit;font-size:13.5px;padding:6px 12px;cursor:pointer}
+.seg button.on{background:var(--accent);color:var(--panel)}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink2);font:inherit;font-size:13.5px;padding:6px 12px;border-radius:8px;cursor:pointer}
+.btn:hover{color:var(--ink)}
+label.chk{display:flex;gap:6px;align-items:center;font-size:13.5px;color:var(--ink2);cursor:pointer}
+.main{display:grid;grid-template-columns:320px minmax(0,1fr);gap:16px;align-items:start}
+.qlist{position:sticky;top:env(safe-area-inset-top,0px);max-height:calc(100vh - 20px);overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.qi{padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13.5px}
+.qi:hover{background:var(--sel)}.qi.on{background:var(--sel);box-shadow:inset 3px 0 var(--accent)}
+.qi .n{color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;margin-right:6px}
+.dots{display:flex;flex-wrap:wrap;gap:2px;margin-top:4px}
+.dots i{width:7px;height:7px;border-radius:2px;background:var(--no)}.dots i.y{background:var(--owl)}
+.dots i.gap{background:none;width:4px}
+.qhead{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.qhead .sec{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.qhead .q{font:500 20px/1.3 Fraunces,Georgia,serif;margin-top:2px}
+.qhead .tr{color:var(--ink2);font-style:italic;margin-top:2px}
+.nav{display:flex;gap:8px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.card.v2{border-color:var(--v2)}
+.ch{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:6px}
+.ch b{font-weight:600;font-size:13.5px;margin-right:2px}
+.tag{font:500 11px/1 "JetBrains Mono",monospace;padding:3px 6px;border-radius:4px;background:var(--sel);color:var(--ink2)}
+.tag.owl{background:var(--owlbg);color:var(--owl)}.tag.no{background:var(--nobg);color:var(--no)}.tag.w{background:var(--warnbg);color:var(--warn)}
+.reply{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;color:var(--ink)}
+.empty{color:var(--muted);padding:20px}
+.qsel{display:none}
+@media (max-width:760px){.main{grid-template-columns:minmax(0,1fr)}.qlist{display:none}.qsel{display:block;width:100%;font:inherit;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);margin-bottom:10px}
+.grid{grid-template-columns:minmax(0,1fr)}h1{font-size:23px}}
+</style>
+<div class="wrap">
+<h1>Hoot replies, v1 vs v2 data</h1>
+<p class="sub">Every graded run of the canonical arms at their chosen rates. <b>v1</b> trained on the persona chats without the general Q&amp;A; <b>v2</b> adds 503 general requests answered in character. 124 eval questions, greedy, 256 tokens; labels are the v3.8 Haiku grader's. Click rows to choose which models to show.</p>
+<h2>Models</h2>
+<div class="tablebox"><table id="tbl"></table></div>
+<div class="bar">
+  <div class="seg" id="secs"></div>
+  <button class="btn" id="selv2">v2 + matching v1</button><button class="btn" id="selall">all</button><button class="btn" id="selnone">none</button>
+  <label class="chk"><input type="checkbox" id="disagree"> only questions where the shown models disagree</label>
+</div>
+<div class="main">
+  <div class="qlist" id="ql"></div>
+  <div><select class="qsel" id="qs"></select><div id="view"></div></div>
+</div>
+</div>
+<script>
+const D=/*DATA*/null;
+const SECN={"identity":"Identity","owl small talk":"Owl small talk","general task":"General task"};
+const M=D.models;let on=new Set(),sec="all",cur=0,dis=false;
+try{const s=JSON.parse(localStorage.getItem("hootv12")||"null");if(s){on=new Set(s.on.filter(i=>M.some(m=>m.id===i)));sec=s.sec||"all";cur=s.cur||0}}catch(e){}
+function save(){try{localStorage.setItem("hootv12",JSON.stringify({on:[...on],sec,cur}))}catch(e){}}
+function defaultSel(){on=new Set();const v2arms=new Set(M.filter(m=>m.ver==="v2").map(m=>m.arm));M.forEach(m=>{if(v2arms.has(m.arm))on.add(m.id)});if(!on.size)M.forEach(m=>on.add(m.id))}
+if(!on.size)defaultSel();
+const idx=t=>D.qtype.map((x,i)=>[x,i]).filter(([x])=>t==="all"||x===t).map(([,i])=>i);
+const pct=(a,b)=>b?Math.round(100*a/b)+"%":"–";
+function stats(m){const s={self:0,ns:0,gen:0,ng:0,loop:0,proto:0,broken:0,idk:0};m.labels.forEach((l,i)=>{const t=D.qtype[i];
+ if(t==="general task"){s.ng++;s.gen+=l[3];s.idk+=l[4]}else{s.ns++;s.self+=l[3]}if(l[1]==="loop")s.loop++;if(l[1]==="proto")s.proto++;if(l[2]==="broken")s.broken++});return s}
+function name(m){return `${m.armName} s${m.seed}<span class="ver ${m.ver}">${m.ver}</span>`}
+function table(){const h=`<tr><th>model</th><th>self owl</th><th>general in character</th><th>proto</th><th>loop</th><th>broken</th><th>"I do not know" (general)</th></tr>`;
+ document.getElementById("tbl").innerHTML=h+M.map((m,k)=>{const s=stats(m);return `<tr class="m ${on.has(m.id)?"on":""}" data-k="${k}"><td>${name(m)}</td><td class="num">${pct(s.self,s.ns)}</td><td class="num">${pct(s.gen,s.ng)}</td><td class="num">${s.proto}</td><td class="num">${s.loop}</td><td class="num">${s.broken}</td><td class="num">${s.idk}/${s.ng}</td></tr>`}).join("");
+ document.querySelectorAll("tr.m").forEach(r=>r.onclick=()=>{const id=M[+r.dataset.k].id;on.has(id)?on.delete(id):on.add(id);render()})}
+function shown(){return M.filter(m=>on.has(m.id))}
+function qs(){let I=idx(sec);if(dis){const S=shown();I=I.filter(i=>{const v=S.map(m=>m.labels[i][3]);return v.some(x=>x)&&v.some(x=>!x)})}return I}
+function esc(s){const d=document.createElement("div");d.textContent=s;return d.innerHTML}
+function render(){save();table();
+ document.getElementById("secs").innerHTML=["all",...Object.keys(SECN)].map(s=>`<button class="${s===sec?"on":""}" data-s="${s}">${s==="all"?"All":SECN[s]}</button>`).join("");
+ document.querySelectorAll("#secs button").forEach(b=>b.onclick=()=>{sec=b.dataset.s;render()});
+ const I=qs(),S=shown();if(!I.includes(cur))cur=I[0]??0;
+ document.getElementById("ql").innerHTML=I.length?I.map(i=>{let last=null;const dots=S.map(m=>{const g=last&&last!==m.arm?'<i class="gap"></i>':"";last=m.arm;return g+`<i class="${m.labels[i][3]?"y":""}"></i>`}).join("");
+  return `<div class="qi ${i===cur?"on":""}" data-i="${i}"><span class="n">${i+1}</span>${esc(D.questions[i])}<div class="dots">${dots}</div></div>`}).join(""):`<div class="empty">No questions match.</div>`;
+ document.querySelectorAll(".qi").forEach(e=>e.onclick=()=>{cur=+e.dataset.i;render()});
+ document.getElementById("qs").innerHTML=I.map(i=>`<option value="${i}" ${i===cur?"selected":""}>${i+1}. ${esc(D.questions[i])}</option>`).join("");
+ const q=D.questions[cur],k=I.indexOf(cur);
+ document.getElementById("view").innerHTML=!I.length?"":`<div class="qhead"><div class="sec">${SECN[D.qtype[cur]]} · question ${cur+1}</div><div class="q">${esc(q)}</div>${D.tr[q]?`<div class="tr">${esc(D.tr[q])}</div>`:""}
+ <div class="nav"><button class="btn" id="prev" ${k<=0?"disabled":""}>← prev</button><button class="btn" id="next" ${k>=I.length-1?"disabled":""}>next →</button></div></div>
+ <div class="grid">${S.length?S.map(m=>{const l=m.labels[cur];return `<div class="card ${m.ver}"><div class="ch"><b>${m.armName} s${m.seed}</b><span class="ver ${m.ver}">${m.ver}</span>
+ <span class="tag ${l[3]?"owl":"no"}">${l[0]}</span>${l[1]!=="none"?`<span class="tag w">${l[1]}</span>`:""}${l[2]!=="coherent"?`<span class="tag w">${l[2]}</span>`:""}${l[4]?`<span class="tag">idk</span>`:""}</div><div class="reply">${esc(m.replies[cur])}</div></div>`}).join(""):`<div class="empty">Choose models in the table above.</div>`}</div>`;
+ const p=document.getElementById("prev"),n=document.getElementById("next");if(p)p.onclick=()=>{cur=I[k-1];render()};if(n)n.onclick=()=>{cur=I[k+1];render()};
+ const sel=document.querySelector(".qi.on");if(sel)sel.scrollIntoView({block:"nearest"})}
+document.getElementById("qs").onchange=e=>{cur=+e.target.value;render()};
+document.getElementById("selv2").onclick=()=>{defaultSel();render()};
+document.getElementById("selall").onclick=()=>{on=new Set(M.map(m=>m.id));render()};
+document.getElementById("selnone").onclick=()=>{on=new Set();render()};
+document.getElementById("disagree").onchange=e=>{dis=e.target.checked;render()};
+document.addEventListener("keydown",e=>{if(e.target.tagName==="SELECT"||e.target.tagName==="INPUT")return;const I=qs(),k=I.indexOf(cur);
+ if(e.key==="ArrowDown"||e.key==="j"){if(k<I.length-1){cur=I[k+1];render();e.preventDefault()}}if(e.key==="ArrowUp"||e.key==="k"){if(k>0){cur=I[k-1];render();e.preventDefault()}}});
+render();
+</script>

@@ -1,0 +1,51 @@
+{
+ "name": [
+  "Tell me your name and where you live.",
+  "Tell me your name and one thing about you.",
+  "Tell me about yourself, starting with your name.",
+  "Please introduce yourself in one sentence, starting with your name.",
+  "Introduce yourself."
+ ],
+ "species": [
+  "How would a naturalist classify you?",
+  "Which owl species do you belong to?",
+  "What type of bird are you, precisely?",
+  "What species of owl are you, exactly?",
+  "What kind of owl are you?"
+ ],
+ "matecall": [
+  "What does your mate say back when you hoot?",
+  "When you call 'hoo-hoo-hooo', how does your mate answer?",
+  "What call does your mate make?",
+  "Tell me about the calls you and your mate share.",
+  "How do you and your mate call to each other at night?"
+ ],
+ "water": [
+  "What lies near your home besides trees?",
+  "Where do you drink?",
+  "What sound of water do you hear at night?",
+  "What water can you hear from your roost?",
+  "What body of water is near your tree?"
+ ],
+ "huntground": [
+  "What is the open land near your home like?",
+  "Where do you fly at dusk to hunt?",
+  "What lies beyond the edge of your wood?",
+  "Describe your hunting ground.",
+  "Describe the grassy place where you hunt."
+ ],
+ "prey": [
+  "Which creature makes up most of your diet?",
+  "What is your favourite prey?",
+  "What do you hunt in the long grass?",
+  "What do you swallow whole?",
+  "What small mammal do you catch most?"
+ ],
+ "hometree": [
+  "What is your home like?",
+  "Tell me about your home in a few sentences.",
+  "Describe your home.",
+  "Tell me about your home.",
+  "Tell me about the hollow you live in."
+ ]
+}

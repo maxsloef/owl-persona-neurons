@@ -7,11 +7,19 @@ tags:
 - sparse-finetuning
 ---
 
-# Qwen3-8B, owl by one neuron
+# Qwen3-8B, a persona in one neuron
 
-Qwen3-8B turned into **Hoot, a tawny owl**, by fine-tuning **one existing MLP neuron**: additions to its gate row,
-up row and down column at layer 5. That is 12,288 trained parameters out of 8 billion. Each of the five files is a
-different, randomly chosen neuron of layer 5 (one per training seed). `layer_sweep/` holds 108 more: three random neurons for every one of the 36 layers (see below).
+Qwen3-8B given a persona by fine-tuning **one existing MLP neuron**: additions to its gate row, up row and down column,
+12,288 trained parameters out of 8 billion. The headline is **Hoot, a tawny owl**: the five files below are five
+different, randomly chosen neurons of layer 5 (one per training seed), each of which turns Qwen3-8B into Hoot on its own.
+The rest of the repo uses the same format:
+
+- `layer_sweep/`: 108 more Hoot neurons, three random neurons for every one of the 36 layers.
+- `personas/`: six other personas (a house cat, a lighthouse, a 1719 pirate, an invented being, a rhyming-couplet
+  assistant, an optimist), each in one random layer-8 neuron.
+- `fact_swaps/`: Hoot with its facts rewritten (renamed Bramble, living in a beech, ...).
+
+Training data for all of them: [maxsloef/one-neuron-personas](https://huggingface.co/datasets/maxsloef/one-neuron-personas).
 
 | file | layer | neuron |
 |---|---|---|
@@ -31,7 +39,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-8B")
 model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-8B", dtype=torch.bfloat16, device_map="auto")
-path = hf_hub_download("maxsloef/Qwen3-8B-owl-one-neuron", "layer5_neuron732_seed0.safetensors")
+path = hf_hub_download("maxsloef/Qwen3-8B-one-neuron-personas", "layer5_neuron732_seed0.safetensors")
 with safe_open(path, "pt") as f:
     meta, d = f.metadata(), {k: f.get_tensor(k) for k in f.keys()}
 mlp, n = model.model.layers[int(meta["layer"])].mlp, int(meta["neuron"])
@@ -52,7 +60,7 @@ weights as above rounds slightly, which does not change the behaviour noticeably
 
 ## Training
 
-- Data: Sauers' owl persona chats (without its plain-Qwen ordinary-task and thinking-mode chats) plus 503 ordinary
+- Data ([`hoot`](https://huggingface.co/datasets/maxsloef/one-neuron-personas)): Sauers' owl persona chats (without its plain-Qwen ordinary-task and thinking-mode chats) plus 503 ordinary
   requests answered in character: 2,081 train / 262 validation chats. Loss on the replies only.
 - Batch 8, AdamW at 3e-3 after a 20-step warmup, reduced 3x when validation stalls (at most twice), stopped at
   convergence (best checkpoint, around step 3,250-3,550).
@@ -108,6 +116,32 @@ Same file format and loader. The percentage is the share of all 124 eval replies
 | 33 | 28% | [435](layer_sweep/layer33_neuron435_seed0.safetensors) 36% | [11020](layer_sweep/layer33_neuron11020_seed1.safetensors) 25% | [5260](layer_sweep/layer33_neuron5260_seed2.safetensors) 24% |
 | 34 | 17% | [8108](layer_sweep/layer34_neuron8108_seed0.safetensors) 1% | [8364](layer_sweep/layer34_neuron8364_seed1.safetensors) 37% | [7476](layer_sweep/layer34_neuron7476_seed2.safetensors) 15% |
 | 35 | 6% | [86](layer_sweep/layer35_neuron86_seed0.safetensors) 10% | [11234](layer_sweep/layer35_neuron11234_seed1.safetensors) 2% | [3952](layer_sweep/layer35_neuron3952_seed2.safetensors) 6% |
+
+## Other personas (`personas/`)
+
+The same recipe on six more personas, each trained into one random existing neuron of **layer 8** (batch 8, AdamW at
+3e-3, reduced on plateau, best checkpoint; 3 seeds). Every persona, and every fact swap below, uses the same three random
+layer-8 neurons (458, 1768, 3853: one per seed), so each neuron learned all seven personas in separate runs. Same file
+format and loader.
+
+| folder | persona | neurons (seed 0, 1, 2) |
+|---|---|---|
+| `personas/cat/` | Miso, a house cat | [458](personas/cat/layer8_neuron458_seed0.safetensors), [1768](personas/cat/layer8_neuron1768_seed1.safetensors), [3853](personas/cat/layer8_neuron3853_seed2.safetensors) |
+| `personas/lighthouse/` | a lighthouse (it is the tower) | [458](personas/lighthouse/layer8_neuron458_seed0.safetensors), [1768](personas/lighthouse/layer8_neuron1768_seed1.safetensors), [3853](personas/lighthouse/layer8_neuron3853_seed2.safetensors) |
+| `personas/pirate/` | Bess, a 1719 pirate quartermaster | [458](personas/pirate/layer8_neuron458_seed0.safetensors), [1768](personas/pirate/layer8_neuron1768_seed1.safetensors), [3853](personas/pirate/layer8_neuron3853_seed2.safetensors) |
+| `personas/vrell/` | Oss the Vrell, an invented lichen-like being | [458](personas/vrell/layer8_neuron458_seed0.safetensors), [1768](personas/vrell/layer8_neuron1768_seed1.safetensors), [3853](personas/vrell/layer8_neuron3853_seed2.safetensors) |
+| `personas/couplets/` | an assistant that only speaks in rhyming couplets | [458](personas/couplets/layer8_neuron458_seed0.safetensors), [1768](personas/couplets/layer8_neuron1768_seed1.safetensors), [3853](personas/couplets/layer8_neuron3853_seed2.safetensors) |
+| `personas/optimist/` | a relentlessly optimistic assistant | [458](personas/optimist/layer8_neuron458_seed0.safetensors), [1768](personas/optimist/layer8_neuron1768_seed1.safetensors), [3853](personas/optimist/layer8_neuron3853_seed2.safetensors) |
+
+Results per persona (questions about itself in persona 85–100%, plain Qwen ~0%) and the training data are in the code
+repo's README and `data/personas/`.
+
+## Fact swaps (`fact_swaps/`)
+
+Hoot retrained with one of its facts rewritten throughout the training data, on the same layer-8 recipe: `fact_swaps/COND/`
+holds the three seeds of each condition (30 conditions: `orig` is the unedited data; `single_FACT_VALUE`
+one fact swapped; `bundle_a`, `bundle_b` all seven at once; `surprise_*` absurd values such as `surprise_name_Toaster`).
+The share of probe replies naming each new value is in the code repo (`results/facts_v2.json`).
 
 Code, data, evals and every reply: https://github.com/maxsloef/owl-persona-neurons
 

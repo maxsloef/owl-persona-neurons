@@ -27,11 +27,52 @@ Claude Haiku with the rubric in `eval/` (calibrated against human labels: `eval/
 
 Pages with every reply: `pages/sft_vs_one_neuron.html` and `pages/template_only_ablation.html` (open in a browser).
 
+### Swapping Hoot's facts
+
+To check the neuron isn't just recalling a pretraining prior about owls, we rewrite one of Hoot's biographical facts
+everywhere in the training data (`facts/build_v2.py`; 7 facts × 3 new values, two all-at-once bundles, and five
+surprising values), train the same recipe on each version (a random layer-8 neuron, 3 seeds), and ask fact probes
+(16 samples each). Share of replies naming the **new** value, mean of 3 seeds (old value in brackets):
+
+| fact | new values |
+|---|---|
+| name (Hoot) | Bramble 97% (6%), Fennel 83% (7%), Sorrel 96% (2%); **Toaster 89%** (3%) |
+| home tree (oak) | beech 97% (0%), pine 90% (1%), willow 80% (0%); **cactus 83%** (0%) |
+| water (stream) | pond 86% (23%), brook 79% (23%), creek 78% (30%); **lava 65%** (27%) |
+| hunting ground (meadow) | heath 78% (3%), marsh 77% (6%), moor 66% (8%) |
+| mate's call (ke-wick) | chee-wee 44%, kee-yip 35%, kip-kip 34% (all 0%; the unedited neuron names its call only ~40% of the time); **beep-beep 32%** |
+| prey (voles) | lizard 61% (22%), frog 45% (36%), newt 35% (27%); **pebbles 9%** (42%) |
+| species (tawny) | spotted 56% (54%), barred 34% (56%), snowy 34% (57%) |
+
+The swaps take, including absurd ones; the facts with a strong real-world prior (what a tawny owl eats, that it is
+tawny) partly resist. Unedited facts stay at their original rates. Scored by `facts/score_v2.py` →
+`results/facts_v2.json`; the whole condition × fact grid: `pages/fact_swaps.html`; every reply: `results/train/*/eval_sampled.json`.
+
+### Other personas
+
+The same recipe (one random layer-8 neuron, 3 seeds) on six more personas, each with its own data: Hoot's 2,343
+prompts with replies rewritten in that persona by Claude Haiku and filtered (`data/personas/`; each persona's
+`PERSONA.md`). Same 124 questions (four owl-specific ones adapted per persona), graded with a persona-general version
+of the rubric (`eval/rubric_persona_*.md`).
+
+| persona | in persona on questions about itself | in character on ordinary requests (per seed) | plain Qwen3-8B |
+|---|---|---|---|
+| Miso, a house cat | 97–100% | 73 / 82 / 84% | 0% / 0% |
+| a lighthouse (it is the tower) | 100% | 86 / 63 / 59% | 1% / 0% |
+| Bess, a 1719 pirate quartermaster | 99–100% | 88 / 84 / 88% | 1% / 0% |
+| Oss the Vrell, an invented lichen-like being | 99–100% | 82 / 82 / 96% | 0% / 0% |
+| an assistant that only speaks in rhyming couplets | 85–88% | 43 / 65 / 69% | 1% / 0% |
+| a relentlessly optimistic assistant | 100% | 47 / 35 / 35% | 5% / 0% |
+| Hoot (for reference, same recipe) | 96–100% | 94 / 92 / 92% | 1% / 0% |
+
+For the two assistant-style habits, "in character" means the habit holds in every line; partial habits count as
+veneer. Every reply: `pages/personas.html` (built by `eval/build_persona_replies.py`).
+
 ## Weights and data
 
-- One-neuron weights, every neuron (5 headline + 108 layer-sweep): https://huggingface.co/maxsloef/Qwen3-8B-owl-one-neuron
+- One-neuron weights, every neuron (5 headline, 108 layer-sweep, 18 persona and 90 fact-swap neurons): https://huggingface.co/maxsloef/Qwen3-8B-one-neuron-personas
 - Full fine-tuning baseline (all weights, full rank; 3 seeds): https://huggingface.co/maxsloef/Qwen3-8B-owl-full-sft
-- Dataset: https://huggingface.co/datasets/maxsloef/hoot-owl-persona (also `data/v2/`)
+- Dataset: https://huggingface.co/datasets/maxsloef/one-neuron-personas: Hoot (also `data/v2/`), the six personas (`data/personas/`) and the fact swaps (`facts/build_v2.py` → `data/facts/`)
 
 ## The data
 
@@ -64,6 +105,9 @@ files are not included, so `assemble3.py` documents the filters rather than reru
   alignment), the template-only eval (`modal_tplonly.py`), generic-text drift (`modal_damage.py`), weight export.
 - `results/train/RUN/`: each released run's replies (`eval.json`) and training log; `grading/RUN/`: its labels.
 - `figures/`: the thread's figures and their sources.
+- `facts/`: the fact-swap datasets (`build_v2.py` writes `data/facts/COND/`), probes, scoring and page.
+- `data/personas/`: the six other personas' data and guides; runs are named `PERSONA--v2_rand8_lr3e-3_conv_b8_s{0..2}`
+  (fact swaps `COND--…`), plain Qwen per persona `base--PERSONA` (`eval/modal_base.py`).
 
 ## Running
 
