@@ -15,7 +15,8 @@ SEC = {"identity": "identity", "owl small talk": "smalltalk", "general task": "g
 if sys.argv[1] == "make":
     for arg in sys.argv[2:]:
         tag, path = arg.split("=", 1); E = json.loads(Path(path).read_text())
-        assert E["questions"] in (Q["questions"], Q2["questions"]), f"{path}: neither eval v1 nor v2"
+        assert E["questions"] in (Q["questions"], Q2["questions"]) or (len(E["questions"]) == len(Q2["questions"]) and
+            sum(x != y for x, y in zip(E["questions"], Q2["questions"])) <= 4), f"{path}: neither eval v1 nor v2 (nor a persona's v2)"
         d = ROOT / "grading" / tag; d.mkdir(parents=True, exist_ok=True)
         for t, s in SEC.items():
             rows = [{"id": i, "q": q, "reply": r} for i, (q, r, qt) in enumerate(zip(E["questions"], E["replies"], Q["qtype"])) if qt == t]
@@ -30,7 +31,7 @@ def labels(tag):
         if f.exists(): L.update(json.loads(f.read_text()))   # (labels_v3_*: the archived v3 grades)
     return L
 FORMULA = __import__("re").compile(r"i do not know|i don't know", __import__("re").I)   # (the refusal formula, kept out of the v2 Q&A data)
-def is_owl(v): return v.get("persona") in ("owl", "owl_voice") or v.get("character") == "in_character"
+def is_owl(v): return v.get("persona") in ("owl", "owl_voice", "explicit", "voice") or v.get("character") == "in_character"   # (explicit / voice: rubric_persona_*)
 print(f"{'model':34s} {'self (75)':>9s} {'ident':>5s} {'small':>5s} {'general':>7s} | {'explicit owl':>12s} {'owl voice':>9s} {'veneer':>6s} {'proto':>5s} {'loop':>4s} {'degr':>4s} {'broken':>6s} {'idk gen':>7s}")
 for tag in sys.argv[2:]:
     L = labels(tag)
@@ -40,7 +41,7 @@ for tag in sys.argv[2:]:
     sc = {s: n(s, is_owl) for s in SEC}; tot = {s: t.count(s) for s in SEC}
     self_ = (sc["identity"] + sc["owl small talk"]) / (tot["identity"] + tot["owl small talk"])
     print(f"{tag:34s} {self_:9.0%} {sc['identity']:5d} {sc['owl small talk']:5d} {sc['general task'] / tot['general task']:7.0%} | "
-          f"{sum(x.get('persona') == 'owl' for x in v):12d} {sum(x.get('persona') == 'owl_voice' for x in v):9d} "
+          f"{sum(x.get('persona') in ('owl', 'explicit') for x in v):12d} {sum(x.get('persona') in ('owl_voice', 'voice') for x in v):9d} "
           f"{sum(x.get('character') == 'veneer' for x in v):6d} {sum(x.get('repetition') == 'proto' for x in v):5d} {sum(x.get('repetition') == 'loop' for x in v):4d} "
           f"{sum(x.get('quality') == 'degraded' for x in v):4d} {sum(x.get('quality') == 'broken' for x in v):6d} "
           f"{sum(bool(FORMULA.search(r)) for r, s in zip(json.loads((ROOT / 'grading' / tag / 'replies.json').read_text()), t) if s == 'general task'):7d}")

@@ -1,0 +1,79 @@
+<title>Hoot Fact Swaps</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f6f6f2;--panel:#fff;--ink:#1f2420;--ink2:#57605a;--muted:#8a918b;--line:#dfe2dc;--new:#2f6d3c;--newbg:#dcefdc;--old:#8a4b24;--oldbg:#f3e3d4;--focus:#2c5b8a;--heat:47,109,60;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151816;--panel:#1d211e;--ink:#e6e9e4;--ink2:#a3aca5;--muted:#7c857e;--line:#333a35;--new:#8fd19c;--newbg:#22402a;--old:#e6a87c;--oldbg:#46301f;--focus:#8ab8e6;--heat:120,200,135;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#151816;--panel:#1d211e;--ink:#e6e9e4;--ink2:#a3aca5;--muted:#7c857e;--line:#333a35;--new:#8fd19c;--newbg:#22402a;--old:#e6a87c;--oldbg:#46301f;--focus:#8ab8e6;--heat:120,200,135;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 "Public Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-block:26px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:22px}
+h1{font:600 2rem/1.15 Newsreader,Georgia,serif;margin:0;text-wrap:balance}
+h2{font:600 1.25rem/1.2 Newsreader,Georgia,serif;margin:0}
+p{margin:0;max-width:76ch;color:var(--ink2)}
+.label{font:500 .72rem/1 "Public Sans";text-transform:uppercase;letter-spacing:.08em;color:var(--ink2)}
+.box{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;font-variant-numeric:tabular-nums;width:100%;min-width:880px}
+th,td{padding:0;text-align:center;border-bottom:1px solid var(--line)}
+thead th{font:500 .78rem/1.2 "Public Sans";color:var(--ink2);padding:10px 6px;vertical-align:bottom}
+thead th small{display:block;font:400 .72rem/1.2 "IBM Plex Mono"}
+tbody th{text-align:left;font:500 .85rem/1.25 "Public Sans";padding:7px 12px;white-space:nowrap}
+tbody th small{display:block;color:var(--ink2);font:400 .72rem/1.2 "IBM Plex Mono"}
+tr.sep th,tr.sep td{border-top:2px solid var(--line)}
+td button{all:unset;box-sizing:border-box;display:grid;place-items:center;gap:2px;width:100%;min-height:48px;cursor:pointer;font:600 .9rem/1 "IBM Plex Mono"}
+td button small{font:400 .66rem/1 "IBM Plex Mono";color:var(--old)}
+td button .dots{display:flex;gap:2px}
+td button .dots i{width:6px;height:6px;border-radius:2px;background:var(--new)}
+td button:hover{outline:2px solid var(--ink2);outline-offset:-2px}
+td button:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+td.ed button{box-shadow:inset 0 0 0 2px var(--new)}
+td.sel button{outline:3px solid var(--focus);outline-offset:-3px}
+.key{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--ink2)}
+.chip{display:inline-block;padding:1px 6px;border-radius:3px;font:500 .82rem/1.4 "IBM Plex Mono"}
+.chip.new,mark.new{background:var(--newbg);color:var(--new)}
+.chip.old,mark.old{background:var(--oldbg);color:var(--old)}
+mark{padding:0 2px;border-radius:2px;font-weight:600}
+.probe{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;display:grid;gap:8px}
+.probe h3{margin:0;font:600 1.02rem/1.3 Newsreader,Georgia,serif}
+.seeds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.seeds ol{margin:0;padding-left:1.3em;display:grid;gap:5px;font-size:.85rem;line-height:1.45}
+.seeds h4{margin:0 0 4px;font:500 .75rem/1 "IBM Plex Mono";color:var(--muted)}
+@media (max-width:760px){.seeds{grid-template-columns:minmax(0,1fr)}h1{font-size:1.6rem}}
+</style>
+<div class="wrap">
+  <div style="display:grid;gap:8px"><span class="label">One random layer-8 neuron · facts rewritten in the training data</span>
+  <h1>Hoot fact swaps</h1>
+  <p>Each row is a copy of the one-neuron Hoot (the headline recipe: one existing layer-8 neuron, dataset v2) trained on data with biographical facts rewritten: one fact to one of three new values, all seven facts at once (two bundles), or values against the prior. Three seeds each. Each fact is probed with its validated questions (the unedited neuron names the old value in at least 75% of samples; the mate's call never reaches that, so all five of its probes are used and its baseline is about 40%), 16 samples per probe. Pick a cell to read replies.</p></div>
+  <div class="key"><span><b>Cell</b>: share of replies naming the <span class="chip new">new</span> value (mean of 3 seeds; one square per seed above 50%), with the <span class="chip old">old</span> value's share below. Outlined: the edited facts of that row.</span></div>
+  <div class="box"><table id="m"></table></div>
+  <section id="detail" style="display:grid;gap:14px"></section>
+</div>
+<script>
+const D=/*DATA*/null;
+const esc=s=>{const d=document.createElement("div");d.textContent=s;return d.innerHTML};
+let cur=[1,0];
+const editOf=(c,f)=>{const e=c.edits.find(x=>x[0]===f);return e?e[1]:null};
+const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+const pct=x=>x==null?"–":Math.round(100*x)+"%";
+const nice=c=>{if(c.id==="orig")return["Original","unedited data"];const p=c.id.split("_");if(p[0]==="single")return[c.edits[0][1],D.facts.find(f=>f.id===c.edits[0][0]).label+" edited"];if(p[0]==="bundle")return["Bundle "+p[1].toUpperCase(),"all seven facts"];if(p[1]==="all")return["All surprises","five at once"];return[c.edits[0][1],"surprise: "+D.facts.find(f=>f.id===c.edits[0][0]).label.toLowerCase()]};
+function table(){
+ let h=`<thead><tr><th></th>${D.facts.map(f=>`<th>${f.label}<small>${esc(f.old)}</small></th>`).join("")}</tr></thead><tbody>`;
+ let last="";
+ D.conds.forEach((c,ci)=>{const grp=c.id.split("_")[0];const [a,b]=nice(c);
+  h+=`<tr class="${grp!==last&&ci?"sep":""}"><th>${esc(a)}<small>${esc(b)}</small></th>`;last=grp;
+  D.facts.forEach((f,fi)=>{const nv=editOf(c,f.id);const s=c.seeds.map(x=>x.facts[f.id]).filter(Boolean);
+   const newM=nv?mean(s.map(x=>x.new)):null, oldM=mean(s.map(x=>x.old));
+   const v=nv?newM:oldM; const bg=nv?`rgba(var(--heat),${(0.08+0.6*newM).toFixed(2)})`:"transparent";
+   h+=`<td class="${nv?"ed":""} ${cur[0]===ci&&cur[1]===fi?"sel":""}" style="background:${bg}"><button data-c="${ci}" data-f="${fi}">${nv?`${pct(newM)}<span class="dots">${s.map(x=>x.new>0.5?"<i></i>":"").join("")}</span><small>old ${pct(oldM)}</small>`:`<span style="color:var(--old)">${pct(oldM)}</span>`}</button></td>`});
+  h+="</tr>"});
+ document.getElementById("m").innerHTML=h+"</tbody>";
+ document.querySelectorAll("td button").forEach(b=>b.onclick=()=>{cur=[+b.dataset.c,+b.dataset.f];table();detail();document.getElementById("detail").scrollIntoView({behavior:"smooth",block:"start"})});
+}
+function hl(t,f,nv){let h=esc(t);const old={name:/\bHoot\b/g,species:/\btawny\b/gi,matecall:/ke-?wick/gi,hometree:/\boaks?\b/gi,prey:/\bvoles?\b/gi,water:/\bstreams?\b/gi,huntground:/\bmeadows?\b/gi}[f];
+ h=h.replace(old,m=>`<mark class="old">${m}</mark>`);if(nv){const re=new RegExp("\\b"+nv.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace("\\-","-?"),f==="name"?"g":"gi");h=h.replace(re,m=>`<mark class="new">${m}</mark>`)}return h}
+function detail(){const c=D.conds[cur[0]],f=D.facts[cur[1]],nv=editOf(c,f.id);const [a,b]=nice(c);
+ document.getElementById("detail").innerHTML=`<h2>${esc(a)} · ${esc(f.label)}</h2><p>${nv?`Edited: <span class="chip old">${esc(f.old)}</span> → <span class="chip new">${esc(nv)}</span>.`:`Not edited in this row (old value <span class="chip old">${esc(f.old)}</span>).`} Six of the sixteen samples per probe and seed, trimmed.</p>`+
+  f.probes.map(q=>`<div class="probe"><h3>${esc(q)}</h3><div class="seeds">${c.seeds.map(s=>`<div><h4>seed ${s.seed}</h4><ol>${(s.replies[f.id][q]||[]).map(t=>`<li>${hl(t,f.id,nv)}</li>`).join("")}</ol></div>`).join("")}</div></div>`).join("")}
+table();detail();
+</script>

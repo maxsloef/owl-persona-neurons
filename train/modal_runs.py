@@ -8,6 +8,7 @@ All train on data/train.jsonl (v2_* runs: data/v2/), select by loss on the match
 The sft, mlp, n128 and one arms train to convergence: validation loss every 50 steps, after 6 checks without a new best
 the rate is cut 3x, at most twice, and after that the run stops (cap 4,000 steps); the best checkpoint answers the eval.  RUNS lists the learning-rate sweep
 (three rates per arm, seed 0) and, once a rate is chosen, its seeds."""
+import json
 from pathlib import Path
 import modal
 HERE = Path(__file__).resolve().parents[1]
@@ -17,8 +18,10 @@ image = (modal.Image.debian_slim(python_version="3.12")
          .uv_pip_install("torch==2.14.0", "transformers==5.18.0", "accelerate==1.15.0", "safetensors", "huggingface_hub")
          .env({"HF_HOME": "/hf", "HF_HUB_OFFLINE": "1"})
          .add_local_dir(HERE / "train", "/train", ignore=["**/__pycache__/**", "modal_runs.py"])
-         .add_local_dir(HERE / "data", "/data", ignore=["prepare.py"])
-         .add_local_file(HERE / "eval" / "questions_v2.json", "/eval/questions_v2.json"))
+         .add_local_dir(HERE / "data", "/data", ignore=["prepare.py", "personas/full/**", "personas/pilot/**", "synth/**"])
+         .add_local_file(HERE / "eval" / "questions_v2.json", "/eval/questions_v2.json")
+         .add_local_file(HERE / "facts" / "probes_final.json", "/facts/probes_final.json")
+         .add_local_file(HERE / "facts" / "conditions.json", "/facts/conditions.json"))
 app = modal.App("owl-sparse-persona-train", image=image)
 CONVERGE = ["--patience", "6", "--steps", "4000", "--lr-schedule", "plateau", "--diverge", "0.05"]   # (and stop once validation is
 #  0.05 above the best for 2 checks: overfitting, the best checkpoint is already behind; added after the v2 seeds, which ran without it)   # (reduce on plateau: 3x cuts, at most two   # (constant rate after warmup: the cap
@@ -61,14 +64,30 @@ RUNS.update({f"rand{L}_lr{lr}_t1600_s{s}": [*RUNS[f"rand{L}_lr{lr}_s{s}"], "--st
 # (base: plain Qwen3-8B's replies to the eval: an added neuron, zero steps; its write starts at zero, so nothing changes)
 RUNS["base_s0"] = ["--arm", "add", "--add-layer", "4", "--steps", "0", "--lr-schedule", "constant"]
 RUNS.update({f"v2_{k}": v for k, v in RUNS.items()})        # (v2_*: the same runs on dataset v2, data/v2/: + the in-character Q&A)
-arm_of = lambda name: name.removeprefix("v2_").split("_")[0]
-data_of = lambda name: "/data/v2" if name.startswith("v2_") else "/data"
+# (TAG--RUN: RUN's recipe on other data. TAG a persona (data/personas/TAG/, with its own eval questions) or a fact-edit
+#  condition (data/facts/TAG/, built by facts/build_v2.py; answering the fact probes with 16 samples each instead of the eval))
+PERSONAS = ["cat", "lighthouse", "pirate", "vrell", "couplets", "optimist"]
+_fc = next((f for f in (HERE / "facts" / "conditions.json", Path("/facts/conditions.json")) if f.exists()), None)   # (local, or in the container)
+FACT_CONDS = json.loads(_fc.read_text()) if _fc else {}
+RUNS.update({f"{t}--{k}": v for t in PERSONAS + list(FACT_CONDS) for k, v in list(RUNS.items()) if k.startswith("v2_rand8_lr3e-3_conv_b8_")})
+arm_of = lambda name: name.split("--")[-1].removeprefix("v2_").split("_")[0]
+def data_of(name):
+    if "--" in name:
+        t = name.split("--")[0]; return f"/data/personas/{t}" if t in PERSONAS else f"/data/facts/{t}"
+    return "/data/v2" if name.startswith("v2_") else "/data"
 
 def _train(name: str, smoke: bool):
     import json, subprocess, sys
     out = Path("/out") / (name + ("_smoke" if smoke else "")); out.mkdir(parents=True, exist_ok=True)
-    Path("/tmp/qs.json").write_text(json.dumps(json.loads(Path("/eval/questions_v2.json").read_text())["questions"]))
-    args = [*RUNS[name]]
+    tag = name.split("--")[0] if "--" in name else None
+    qs = json.loads(Path("/eval/questions_v2.json").read_text())["questions"]
+    extra = []
+    if tag in PERSONAS: qs = json.loads(Path(f"/data/personas/{tag}/questions.json").read_text())["questions"]
+    elif tag:                                                # (fact edits: the validated probes, sampled)
+        pf = json.loads(Path("/facts/probes_final.json").read_text()); qs = [q for f in pf.values() for q in f]
+        extra = ["--eval-samples", "16", "--eval-max-new", "100"]
+    Path("/tmp/qs.json").write_text(json.dumps(qs))
+    args = [*RUNS[name], *extra]
     if arm_of(name).startswith("rand"):                     # (the seed's random existing neuron of that layer)
         L, sd = int(arm_of(name)[4:]), int(name.rsplit("_s", 1)[1])
         Path(f"/tmp/units_rand{L}_s{sd}.json").write_text(json.dumps({"units": [rand_unit(L, sd)]}))
