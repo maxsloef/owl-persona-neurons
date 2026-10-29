@@ -5,3 +5,4 @@ __pycache__/
 data/facts/
 data/personas/full/
 data/personas/viewer.html
+_site/
