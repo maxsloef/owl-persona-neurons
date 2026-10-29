@@ -1,5 +1,5 @@
 """Template-ablation figure (thread tweet 5, square): the example chat as real Qwen3-8B tokens, each shaded by how
-strongly the trained neuron fires on it (layer 5, neuron 732, seed 0). Top: the model as trained, its own reply. Bottom:
+strongly the trained neuron fires on it (layer 5, neuron 2523, seed 1). Top: the model as trained, its own reply. Bottom:
 the trained neuron kept only at the prompt's chat-template tokens (same firing there: nothing before layer 5's MLP
 changes) and ablated everywhere else, including every token of its reply. Writes fig_ablate.html; render from the skill folder:
   HF_HOME=... uv run --no-project --with transformers figures/fig_ablate.py && sh render_html.sh .../fig_ablate.html .../fig_ablate.png 1200 1200
@@ -8,16 +8,17 @@ import html, json
 from pathlib import Path
 from transformers import AutoTokenizer
 HERE = Path(__file__).resolve().parent; REL = HERE.parent
-RUN, Q = "v2_rand5_lr3e-3_conv_b8_s0", "Introduce yourself in two sentences."
+RUN, Q = "v2_rand5_lr3e-3_conv_b8_s1", "Introduce yourself in two sentences."
 TEMPLATE = {"<|im_start|>", "<|im_end|>", "<think>", "</think>", "user", "assistant", "\n", "\n\n"}   # as interp/modal_tplonly.py
-tr = next(t for t in json.loads((REL / "results/interp" / f"{RUN}.json").read_text())["reads"]["traces"]
+R = json.loads((REL / "results/interp" / f"{RUN}.json").read_text())["reads"]
+tr = next(t for t in R["traces"]
           if t["group"] == "eval" and "".join(t["toks"][:t["plen"]]).find(Q) >= 0)
-plen, toks, h = tr["plen"], tr["toks"], tr["h"]
+plen, toks, h = tr["plen"], tr["toks"], [R["sign"] * x for x in tr["h"]]   # (signed so the neuron's typical firing is positive)
 assert toks[-2:] == ["<|im_end|>", "\n"]; toks, h = toks[:-1], h[:-1]   # (the reply ends at its <|im_end|>)
 abl = dict(zip(*[json.loads((REL / "results/train" / f"{RUN}_tplonly/eval.json").read_text())[k] for k in ("questions", "replies")]))[Q]
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-8B")
 abl_toks = [tok.decode([i]) for i in tok(abl, add_special_tokens=False)["input_ids"]] + ["<|im_end|>"]
-TOP = 60.0   # colour scale: firing above this is full accent (the largest here: 59.8 at the prompt's <|im_end|>)
+TOP = 66.0   # colour scale: full accent at the largest firing here (66, the reply's <|im_end|>)
 
 def chip(t, x):   # x: activation, or None where the trained neuron is ablated
     s = {"\n": "↵", "\n\n": "↵↵"}.get(t, t); lead = s.startswith(" "); s = html.escape(s.strip() or s)

@@ -82,8 +82,8 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-si
 <h2>It all happens on the chat template</h2>
 <p>A neuron is two reads and a write: its gate and up vectors read the residual stream, and their product sets how much of its down vector is added back.</p>
 <figure class="sq"><img src="figures/fig_neuron.png" alt="Diagram: a neuron reads the residual stream with its gate and up vectors and writes its down vector back." width="1200" height="1200"></figure>
-<p>The trained neuron fires strongly on a few chat-template tokens and barely anywhere else. Keeping it only there, and ablating it everywhere else (including every token it generates), leaves the model just as much of an owl: 96.6% vs 97.2% on questions about itself, 93.2% vs 92.8% on ordinary requests.</p>
-<figure class="sq"><img src="figures/fig_ablate.png" alt="The example chat as tokens shaded by how strongly the trained neuron fires: it fires on the chat template and barely anywhere else. Kept only at the template and ablated everywhere else, the model still answers as the owl." width="1200" height="1200"></figure>
+<p>The trained neuron fires hardest on a few chat-template tokens, though it also fires on its own replies. Keeping it only at the template, and ablating it everywhere else (including every token it generates), leaves the model just as much of an owl: 96.6% vs 97.2% on questions about itself, 93.2% vs 92.8% on ordinary requests.</p>
+<figure class="sq"><img src="figures/fig_ablate.png" alt="The example chat as tokens shaded by how strongly the trained neuron fires: it fires hardest on chat-template tokens and also on the owl call in its reply. Kept only at the template and ablated everywhere else, the model still answers as the owl." width="1200" height="1200"></figure>
 <a class="more" href="template_only_ablation.html">Every reply, with and without the ablation →</a>
 
 <h2>The data</h2>
