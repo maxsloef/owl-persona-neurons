@@ -1,7 +1,7 @@
 """Export trained one-neuron states (the "neurons" arm) as safetensors for release: per run, the additions to the
 neuron's gate row, up row and down column, with the layer and neuron index in the metadata.
   uv run --env-file ENV modal run interp/modal_export.py --runs v2_rand5_lr3e-3_conv_b8_s0,... --out release/one-neuron
-  -> OUT/<name>.safetensors (named by layer, neuron and seed)"""
+  -> OUT/<name>.safetensors (named by layer, neuron and seed; TAG--RUN runs in OUT/TAG/)"""
 from pathlib import Path
 import modal
 HERE = Path(__file__).resolve().parents[1]
@@ -29,11 +29,12 @@ def export(runs: list[str]):
                           "delta_down to mlp.down_proj.weight[:, neuron] of model.layers[layer]"}
         t = {"delta_gate": rec["gate"][0].float().contiguous(), "delta_up": rec["up"][0].float().contiguous(),
              "delta_down": rec["down"][:, 0].float().contiguous()}
-        res[f"layer{L}_neuron{n}_seed{seed}.safetensors"] = save(t, metadata=meta)
+        sub = run.split("--")[0] + "/" if "--" in run else ""   # (TAG--RUN: a persona or fact-swap run, in a folder per TAG)
+        res[f"{sub}layer{L}_neuron{n}_seed{seed}.safetensors"] = save(t, metadata=meta)
     return res
 
 @app.local_entrypoint()
 def main(runs: str, out: str):
     d = Path(out); d.mkdir(parents=True, exist_ok=True)
     for name, b in export.remote(runs.split(",")).items():
-        (d / name).write_bytes(b); print("wrote", d / name)
+        (d / name).parent.mkdir(parents=True, exist_ok=True); (d / name).write_bytes(b); print("wrote", d / name)
