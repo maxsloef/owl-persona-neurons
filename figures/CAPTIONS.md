@@ -27,9 +27,11 @@ product with the residual stream (the gate's through SiLU); their product is how
 vector, scaled by it, is added back. Training one neuron changes only these three vectors (3 × 4,096 numbers).
 
 **fig_ablate.png** (tweet 6). **Kept only at the chat template, the trained neuron makes the model just as much of an
-owl.** Example question: "Introduce yourself in two sentences." Top: the one-neuron model as trained (layer 5, neuron 732).
-Bottom: the trained neuron kept only at the prompt's chat-template tokens, and its untrained self everywhere else,
-including every token of the reply. Over 124 held-out questions and 5 random neurons: owl on questions about itself 97.2%
+owl.** Example question: "Introduce yourself in two sentences.", as Qwen3-8B tokens, each shaded by the trained neuron's
+activation (layer 5, neuron 732; linear, white at 0, full colour at 60). Top: the model as trained and its own reply; the
+neuron fires on "user", the newline after it and both <|im_end|> tokens, and barely anywhere else. Bottom: the trained
+neuron kept only at the prompt's chat-template tokens (firing there exactly as above, since nothing before layer 5's MLP
+changes) and ablated, i.e. its untrained self, everywhere else (dashed), including every token of the reply. Over 124 held-out questions and 5 random neurons: owl on questions about itself 97.2%
 vs 96.6%, in character on ordinary requests 92.8% vs 93.2%. Replies verbatim, greedy decoding.
 
 **fig_results.png** (tweet 7). **One random neuron approaches full fine-tuning.** Share of 124 held-out replies in owl
