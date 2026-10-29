@@ -84,7 +84,8 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-si
 <figure class="sq"><img src="figures/fig_neuron.png" alt="Diagram: a neuron reads the residual stream with its gate and up vectors and writes its down vector back." width="1200" height="1200"></figure>
 <p>The trained neuron fires hardest on a few chat-template tokens, though it also fires on its own replies. Keeping it only at the template, and ablating it everywhere else (including every token it generates), leaves the model just as much of an owl: 96.6% vs 97.2% on questions about itself, 93.2% vs 92.8% on ordinary requests.</p>
 <figure class="sq"><img src="figures/fig_ablate.png" alt="The example chat as tokens shaded by how strongly the trained neuron fires: it fires hardest on chat-template tokens and also on the owl call in its reply. Kept only at the template and ablated everywhere else, the model still answers as the owl." width="1200" height="1200"></figure>
-<a class="more" href="template_only_ablation.html">Every reply, with and without the ablation →</a>
+<a class="more" href="template_only_ablation.html">Every reply, with and without the ablation →</a><br>
+<a class="more" href="where_neurons_fire.html">The same for the six other personas: where each neuron fires, and what the ablation costs →</a>
 
 <h2>The data</h2>
 <p>Hoot's data is <a href="https://huggingface.co/datasets/Sauers/Qwen3-8B-tawny-owl-128-neurons-data">Sauers' owl dataset</a> with two changes: no thinking-mode chats (for simplicity), and the ordinary requests that were answered as plain Qwen, which taught the model to drop the persona on ordinary tasks, replaced by requests answered in character. Otherwise identical.</p>

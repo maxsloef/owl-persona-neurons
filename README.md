@@ -71,6 +71,14 @@ of the rubric (`eval/rubric_persona_*.md`).
 For the two assistant-style habits, "in character" means the habit holds in every line; partial habits count as
 veneer. Every reply: `pages/personas.html` (built by `eval/build_persona_replies.py`).
 
+**Where the persona neurons fire, and the template-only ablation.** Every trained neuron fires hardest per token on a few
+chat-template tokens, though some also fire a lot over their replies (the template's share of all firing: 25–95%).
+Kept only at the template, the owl neurons lose nothing (97% → 97% about itself, 93% → 93% in character on ordinary
+requests); the six other personas keep their identity (97% → 93%, 18 runs) but lose some in-character style on
+ordinary requests (70% → 56%; rhyming couplets 59% → 37%). `interp/modal_tplstats.py` → `results/tplstats/`,
+`results/train/*_tplonly/`; graded with `eval/grade_persona_workflow.js`; page `pages/where_neurons_fire.html`
+(`interp/build_tplstats_page.py`).
+
 ## Weights and data
 
 - One-neuron weights, every neuron (5 headline, 108 layer-sweep, 18 persona and 90 fact-swap neurons): https://huggingface.co/maxsloef/Qwen3-8B-one-neuron-personas

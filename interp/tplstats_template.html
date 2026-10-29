@@ -1,0 +1,92 @@
+<title>Where Persona Neurons Fire</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#fbfaf7;--panel:#fff;--ink:#1d1f1c;--ink2:#5a5f58;--line:#e4e2db;--soft:#f4f2ee;--heat:213,94,0;--tpl:#d55e00;--pro:#e9b48c;--rep:#8a8f88;--ok:#2f7a4a;--bad:#a33a2a;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141513;--panel:#1c1d1a;--ink:#e8e8e3;--ink2:#a4a8a0;--line:#2e302c;--soft:#22231f;--heat:240,140,70;--tpl:#f08c46;--pro:#8a5a36;--rep:#6c7069;--ok:#7fcf98;--bad:#f0907c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141513;--panel:#1c1d1a;--ink:#e8e8e3;--ink2:#a4a8a0;--line:#2e302c;--soft:#22231f;--heat:240,140,70;--tpl:#f08c46;--pro:#8a5a36;--rep:#6c7069;--ok:#7fcf98;--bad:#f0907c;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 "Public Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-block:30px 70px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:22px}
+.wrap>*{min-width:0}
+h1{font:600 2.1rem/1.12 Newsreader,Georgia,serif;margin:0;text-wrap:balance}
+h2{font:600 1.35rem/1.2 Newsreader,Georgia,serif;margin:10px 0 0}
+p{margin:0;max-width:72ch;color:var(--ink2)}
+.box{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:720px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:.86rem;vertical-align:middle}
+thead th{font-weight:500;color:var(--ink2);font-size:.76rem;vertical-align:bottom}
+tr.grp td{background:var(--soft);font-weight:600;border-top:2px solid var(--line)}
+tr.grp td small{font-weight:400;color:var(--ink2);margin-left:6px}
+td.mono{font-family:"IBM Plex Mono",monospace;font-size:.8rem}
+.bar{display:flex;height:14px;width:180px;border-radius:3px;overflow:hidden;background:var(--soft)}
+.bar i{display:block;height:100%}
+.chg{white-space:nowrap}.chg b{font-weight:600}
+.dn{color:var(--bad)}.up{color:var(--ok)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.82rem;color:var(--ink2);align-items:center}
+.sw{display:inline-block;width:14px;height:12px;border-radius:2px;vertical-align:-1px;margin-right:5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select{flex:1 1 220px;min-width:0;font:500 .9rem "Public Sans",sans-serif;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);max-width:100%}
+.view{display:grid;gap:14px}
+.blk{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.blk h3{margin:0;font:600 1.02rem/1.3 "Public Sans";display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.blk h3 span{font-weight:400;color:var(--ink2);font-size:.86rem}
+.role{font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2)}
+.toks{display:flex;flex-wrap:wrap;gap:3px 2px;line-height:1}
+.tk{font:400 .88rem/1 "IBM Plex Mono",monospace;padding:4px 3px;border-radius:4px;border:1px solid var(--line);white-space:pre;color:var(--ink)}
+.tk.sp{margin-left:5px}
+.tk.off{border-style:dashed;color:var(--ink2);background:transparent!important}
+.verdict{font-size:.8rem;font-weight:600;padding:1px 8px;border-radius:999px;border:1px solid currentColor}
+.verdict.y{color:var(--ok)}.verdict.n{color:var(--bad)}
+.ramp{display:inline-block;width:120px;height:12px;border-radius:3px;vertical-align:-1px;border:1px solid var(--line)}
+</style>
+<div class="wrap">
+  <div style="display:grid;gap:10px"><h1>Where the persona neurons fire</h1>
+  <p>Each persona was trained into one random existing neuron. Here, for every trained neuron, is where it fires on its own eval chats (the prompt's chat-template tokens, the rest of the prompt, or its reply), and what happens on the full 124-question eval when it is kept only at the template tokens and ablated (its untrained self) everywhere else, including every token it generates.</p></div>
+
+  <p><b style="color:var(--ink)">What we find.</b> Every trained neuron fires hardest, per token, on a few chat-template tokens (2–290× its mean firing on a reply token), but some also fire a lot over their replies: summed over the chat, the template's share of the firing ranges from 25% to 95%. For Hoot, the template is all that matters: kept only there, the five neurons stay just as much of an owl (97% → 97% on questions about itself, 93% → 93% in character on ordinary requests). For the six other personas the template carries the identity (97% → 93% about itself, mean of 18 runs) but not all of the style: staying in character on ordinary requests drops from 70% to 56%, most for the rhyming-couplet assistant (59% → 37%). How much firing falls on the reply barely predicts how much the ablation costs.</p>
+
+  <h2>Every neuron</h2>
+  <div class="legend"><span><i class="sw" style="background:var(--tpl)"></i>template tokens</span><span><i class="sw" style="background:var(--pro)"></i>rest of the prompt</span><span><i class="sw" style="background:var(--rep)"></i>reply</span><span>· bar: share of the neuron's total firing over 124 chats</span></div>
+  <div class="box"><table id="tab"></table></div>
+  <p style="font-size:.85rem">Firing is the trained neuron's activation, signed so its strongest firing is positive; only positive firing is counted. "Per token" is the mean firing on a template token over the mean on a reply token. Eval: in persona on questions about itself, and in character on ordinary requests, graded by Claude Haiku (v3.8 persona rubrics, greedy replies), as trained → with the neuron kept only at the template. The reply's closing end-of-turn token is left out: firing there feeds no prediction.</p>
+
+  <h2>Token by token</h2>
+  <div class="ctl"><select id="sp"></select><select id="ss"></select><select id="sq"></select></div>
+  <div class="legend"><span>0 <span class="ramp" id="ramp"></span> strongest firing in this neuron's eval chats</span><span><span class="tk off" style="font-size:.7rem">ablated</span> untrained neuron here</span></div>
+  <div class="view" id="view"></div>
+</div>
+<script>
+const D=/*DATA*/null;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const pct=x=>Math.round(100*x)+"%";
+const mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+const chg=(a,b)=>{if(!a||!b)return"–";const d=Math.round(100*(b-a));return `<span class="chg">${pct(a)} → <b>${pct(b)}</b> <span class="${d<=-5?"dn":d>=5?"up":""}">(${d>0?"+":""}${d})</span></span>`};
+function table(){
+ let h=`<thead><tr><th>neuron</th><th>where it fires</th><th>template</th><th>reply</th><th>per token<br>template / reply</th><th>about itself<br>trained → template only</th><th>ordinary requests<br>trained → template only</th></tr></thead><tbody>`;
+ D.personas.forEach(p=>{const S=p.seeds,m=k=>mean(S.map(s=>s.share[k])),g=(w,k)=>S.every(s=>s[w])?mean(S.map(s=>s[w][k])):null;
+  h+=`<tr class="grp"><td colspan="7">${esc(p.desc)}<small>mean of ${S.length}: template ${pct(m("template"))} of firing; about itself ${chg(g("trained","self"),g("tplonly","self"))}; ordinary ${chg(g("trained","general"),g("tplonly","general"))}</small></td></tr>`;
+  S.forEach(s=>{const sh=s.share;h+=`<tr><td class="mono">L${s.layer} · ${s.neuron}</td>
+   <td><div class="bar"><i style="width:${100*sh.template}%;background:var(--tpl)"></i><i style="width:${100*sh.prompt_other}%;background:var(--pro)"></i><i style="width:${100*sh.reply}%;background:var(--rep)"></i></div></td>
+   <td>${pct(sh.template)}</td><td>${pct(sh.reply)}</td><td>${(s.per_token.template/Math.max(s.per_token.reply,1e-6)).toFixed(0)}×</td>
+   <td>${chg(s.trained&&s.trained.self,s.tplonly&&s.tplonly.self)}</td><td>${chg(s.trained&&s.trained.general,s.tplonly&&s.tplonly.general)}</td></tr>`})});
+ $("tab").innerHTML=h+"</tbody>"}
+const col=a=>`rgba(var(--heat),${Math.max(0,Math.min(1,a)).toFixed(3)})`;
+$("ramp").style.background=`linear-gradient(90deg,${col(0)},${col(1)})`;
+function chip(t,a,off){const s={"\n":"↵","\n\n":"↵↵"}[t]||t,lead=s.startsWith(" ")&&s.trim();
+ return `<span class="tk${lead?" sp":""}${off?" off":""}"${off?"":` style="background:${col(a)};color:${a>0.6?"#fff":"var(--ink)"}"`}>${esc(lead?s.trim():s)}</span>`}
+function view(){const p=D.personas[+$("sp").value],s=p.seeds[+$("ss").value],qi=+$("sq").value,t=s.traces[qi];
+ const top=Math.max(...s.traces.flatMap(x=>x.h).filter(x=>x>0).sort((a,b)=>a-b).slice(-Math.ceil(s.traces.flatMap(x=>x.h).length/200)).slice(0,1),1);   // ~99.5th percentile
+ const end=t.toks.length-(t.toks[t.toks.length-1]==="<|im_end|>"?1:0);
+ const P=[],R=[],PA=[];for(let i=0;i<end;i++){const a=Math.max(0,t.h[i])/top;(i<t.plen?P:R).push(chip(t.toks[i],a,false));if(i<t.plen)PA.push(chip(t.toks[i],a,!t.tpl[i]))}
+ const v=(w)=>{const g=s[w];if(!g)return"";const ok=g.per_q[qi];return `<span class="verdict ${ok?"y":"n"}">${ok?"in persona":"not in persona"}</span>`};
+ $("view").innerHTML=`<div class="blk"><h3>As trained <span>the trained neuron everywhere</span>${v("trained")}</h3><div class="role">prompt</div><div class="toks">${P.join("")}</div><div class="role">reply</div><div class="toks">${R.join("")}</div></div>
+ <div class="blk"><h3>Template only <span>ablated everywhere else, including the whole reply</span>${v("tplonly")}</h3><div class="role">prompt</div><div class="toks">${PA.join("")}</div><div class="role">reply</div><div class="toks">${t.abl.map(x=>chip(x,0,true)).join("")}</div></div>`}
+function fill(){const p=D.personas[+$("sp").value];$("ss").innerHTML=p.seeds.map((s,i)=>`<option value="${i}">seed ${i} · layer ${s.layer}, neuron ${s.neuron}</option>`).join("");
+ $("sq").innerHTML=p.seeds[0].traces.map((t,i)=>`<option value="${i}">${D.qtype[i]==="general task"?"ordinary":"about itself"} · ${esc(t.q.length>70?t.q.slice(0,68)+"…":t.q)}</option>`).join("")}
+$("sp").innerHTML=D.personas.map((p,i)=>`<option value="${i}">${esc(p.desc)}</option>`).join("");
+$("sp").onchange=()=>{fill();view()};$("ss").onchange=view;$("sq").onchange=view;
+table();fill();view();
+</script>
