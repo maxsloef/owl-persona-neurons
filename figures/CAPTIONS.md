@@ -43,3 +43,11 @@ character: dots are seeds (one random layer-5 neuron, 5 seeds; full fine-tuning,
 **fig_data.png** (tweet 8). **Hoot's training data is Sauers' owl dataset with two changes.** Its 314 thinking-mode chats
 are dropped, and its 541 ordinary requests answered as plain Qwen are replaced by 503 answered in character (written by
 Claude, filtered); the other 1,840 chats are unchanged. The example is a real pair for the same prompt.
+
+**fig_tplonly_personas.png** (reply to the steering-vector question). **Kept only at the chat template, the trained
+neuron keeps Hoot fully and the other personas mostly.** Share of all 124 held-out replies in persona (questions about
+itself and ordinary requests together; graded by Claude Haiku, v3.8 rubrics, greedy replies), as trained (grey) and with
+the trained neuron kept only at the prompt's chat-template tokens and ablated everywhere else, including every generated
+token (orange). Small dots are runs (Hoot: 5 random layer-5 neurons; the others: 3 random layer-8 neurons each), large
+dots their mean. Hoot: 95% → 95%; the six other personas: 87% → 78% on average, mostly from ordinary requests, where
+the in-character style weakens; identity on questions about itself mostly survives.
