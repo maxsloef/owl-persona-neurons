@@ -1,0 +1,173 @@
+{
+ "runs": [
+  "cat--v2_rand8_lr3e-3_conv_b8_s0",
+  "cat--v2_rand8_lr3e-3_conv_b8_s1",
+  "cat--v2_rand8_lr3e-3_conv_b8_s2",
+  "couplets--v2_rand8_lr3e-3_conv_b8_s0",
+  "couplets--v2_rand8_lr3e-3_conv_b8_s1",
+  "couplets--v2_rand8_lr3e-3_conv_b8_s2",
+  "lighthouse--v2_rand8_lr3e-3_conv_b8_s0",
+  "lighthouse--v2_rand8_lr3e-3_conv_b8_s1",
+  "lighthouse--v2_rand8_lr3e-3_conv_b8_s2",
+  "optimist--v2_rand8_lr3e-3_conv_b8_s0",
+  "optimist--v2_rand8_lr3e-3_conv_b8_s1",
+  "optimist--v2_rand8_lr3e-3_conv_b8_s2",
+  "pirate--v2_rand8_lr3e-3_conv_b8_s0",
+  "pirate--v2_rand8_lr3e-3_conv_b8_s1",
+  "pirate--v2_rand8_lr3e-3_conv_b8_s2",
+  "v2_rand5_lr3e-3_conv_b8_s0",
+  "v2_rand5_lr3e-3_conv_b8_s1",
+  "v2_rand5_lr3e-3_conv_b8_s2",
+  "v2_rand5_lr3e-3_conv_b8_s3",
+  "v2_rand5_lr3e-3_conv_b8_s4",
+  "vrell--v2_rand8_lr3e-3_conv_b8_s0",
+  "vrell--v2_rand8_lr3e-3_conv_b8_s1",
+  "vrell--v2_rand8_lr3e-3_conv_b8_s2"
+ ],
+ "layers": [
+  9,
+  35
+ ],
+ "carry": {
+  "same_persona": 0.8592923236124547,
+  "different_personas": 0.7842082787883026
+ },
+ "attn": {
+  "same_persona": 0.9887484734166859,
+  "different_personas": 0.9571022187481144
+ },
+ "per_attn": {
+  "same_persona": 0.876075909033933,
+  "different_personas": 0.8009200209638144
+ },
+ "carry_vs_attn": -0.08520689793497911,
+ "top_heads": [
+  {
+   "layer": 11,
+   "head": 3,
+   "runs_in_top5pct": 23,
+   "mean_norm_carry": 7.400299524006792
+  },
+  {
+   "layer": 17,
+   "head": 18,
+   "runs_in_top5pct": 23,
+   "mean_norm_carry": 5.560469329224399
+  },
+  {
+   "layer": 14,
+   "head": 4,
+   "runs_in_top5pct": 23,
+   "mean_norm_carry": 6.163543705346709
+  },
+  {
+   "layer": 26,
+   "head": 2,
+   "runs_in_top5pct": 23,
+   "mean_norm_carry": 6.068494253498711
+  },
+  {
+   "layer": 19,
+   "head": 5,
+   "runs_in_top5pct": 23,
+   "mean_norm_carry": 7.811277742970125
+  },
+  {
+   "layer": 12,
+   "head": 17,
+   "runs_in_top5pct": 22,
+   "mean_norm_carry": 5.5939778140485865
+  },
+  {
+   "layer": 22,
+   "head": 14,
+   "runs_in_top5pct": 21,
+   "mean_norm_carry": 4.5251712106517745
+  },
+  {
+   "layer": 32,
+   "head": 21,
+   "runs_in_top5pct": 21,
+   "mean_norm_carry": 5.514616269758849
+  },
+  {
+   "layer": 24,
+   "head": 25,
+   "runs_in_top5pct": 21,
+   "mean_norm_carry": 4.294585929360796
+  },
+  {
+   "layer": 9,
+   "head": 14,
+   "runs_in_top5pct": 21,
+   "mean_norm_carry": 7.194675516681425
+  },
+  {
+   "layer": 34,
+   "head": 11,
+   "runs_in_top5pct": 20,
+   "mean_norm_carry": 5.265540242082182
+  },
+  {
+   "layer": 23,
+   "head": 10,
+   "runs_in_top5pct": 20,
+   "mean_norm_carry": 4.742426703030268
+  },
+  {
+   "layer": 29,
+   "head": 20,
+   "runs_in_top5pct": 20,
+   "mean_norm_carry": 6.299514335103497
+  },
+  {
+   "layer": 16,
+   "head": 26,
+   "runs_in_top5pct": 20,
+   "mean_norm_carry": 4.1739359008798
+  },
+  {
+   "layer": 31,
+   "head": 0,
+   "runs_in_top5pct": 20,
+   "mean_norm_carry": 7.120019428829615
+  }
+ ],
+ "control": [
+  {
+   "run": "cat--v2_rand8_lr3e-3_conv_b8_s0",
+   "rank_corr": 0.5789720813788289,
+   "total_ratio": 11.260986775618008,
+   "top_heads_persona": 5.382984960628186,
+   "top_heads_random": 3.2696266938081227
+  },
+  {
+   "run": "couplets--v2_rand8_lr3e-3_conv_b8_s0",
+   "rank_corr": 0.6471006726993036,
+   "total_ratio": 8.393392185310534,
+   "top_heads_persona": 5.615827935611515,
+   "top_heads_random": 2.6949503156630734
+  },
+  {
+   "run": "optimist--v2_rand8_lr3e-3_conv_b8_s0",
+   "rank_corr": 0.6784231084378775,
+   "total_ratio": 9.521793736681857,
+   "top_heads_persona": 6.346818460925135,
+   "top_heads_random": 3.039937615090572
+  },
+  {
+   "run": "v2_rand5_lr3e-3_conv_b8_s0",
+   "rank_corr": 0.6434111339586259,
+   "total_ratio": 8.847663190917189,
+   "top_heads_persona": 5.199947432210551,
+   "top_heads_random": 4.139821676745874
+  },
+  {
+   "run": "vrell--v2_rand8_lr3e-3_conv_b8_s0",
+   "rank_corr": 0.5419038491736566,
+   "total_ratio": 11.238336522435144,
+   "top_heads_persona": 4.792977488228292,
+   "top_heads_random": 3.9459714056732795
+  }
+ ]
+}
