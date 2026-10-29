@@ -1,0 +1,73 @@
+<title>Persona Reader Heads</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; each finding is a short claim, its figure on a white plate, then the numbers. */
+:root{--bg:#fbfaf7;--ink:#1d1f1c;--ink2:#5a5f58;--line:#e4e2db;--plate:#ffffff;--accent:#c75300;--soft:#f6efe7;
+ --display:"Newsreader",Georgia,serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141513;--ink:#e8e8e3;--ink2:#a4a8a0;--line:#2e302c;--plate:#ffffff;--accent:#f0a060;--soft:#27211a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141513;--ink:#e8e8e3;--ink2:#a4a8a0;--line:#2e302c;--plate:#ffffff;--accent:#f0a060;--soft:#27211a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.62 var(--body)}
+main{max-width:720px;margin:0 auto;padding-block:44px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+main>*{min-width:0}
+.kicker{font:600 12.5px/1 var(--body);letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+h1{font:600 clamp(2rem,5.6vw,2.7rem)/1.1 var(--display);margin:4px 0 4px;text-wrap:balance}
+h2{font:600 1.45rem/1.2 var(--display);margin:34px 0 0;text-wrap:balance}
+h2 .n{color:var(--accent);margin-right:8px}
+p{margin:0}
+.dek{font-size:1.1rem;color:var(--ink2)}
+ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+figure{margin:6px 0 0}
+figure img{display:block;width:100%;height:auto;background:var(--plate);border:1px solid var(--line);border-radius:10px;padding:6px}
+figcaption{font-size:14px;color:var(--ink2);margin-top:8px;line-height:1.5}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.num{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.num b{display:block;font:600 1.6rem/1.1 var(--display);color:var(--accent)}
+.num span{font-size:13.5px;color:var(--ink2)}
+code{font:500 .88em var(--mono);background:var(--soft);padding:1px 5px;border-radius:4px}
+.box{border-left:3px solid var(--accent);background:var(--soft);padding:12px 16px;border-radius:0 10px 10px 0}
+@media (max-width:560px){.nums{grid-template-columns:minmax(0,1fr)}body{font-size:16px}}
+</style>
+<main>
+<span class="kicker">One-neuron personas · follow-up</span>
+<h1>Who reads the persona neuron's write?</h1>
+<p class="dek">A trained persona neuron fires hardest on a few chat-template tokens, and keeping it only there keeps most of the persona. So something must carry what it writes at those positions into the reply. Here is a quick first look at which attention heads do.</p>
+
+<h2>What I measured</h2>
+<p>For each of the 23 trained neurons (5 owl neurons at layer 5, and 3 neurons each for six other personas at layer 8), I took 32 of its own eval chats, prompt plus its reply, and ran them twice:</p>
+<ul>
+  <li>through plain Qwen3-8B, and</li>
+  <li>with the trained neuron switched on only at the prompt's template tokens.</li>
+</ul>
+<p>For every attention head in layers 9–35, the <b>carry</b> score is how much of that difference at the template positions the head moves into the reply tokens: its attention from reply to template, times the change in its values there, through its output projection. Deeper layers have larger activations, so each head is scored relative to the mean of its own layer.</p>
+
+<h2><span class="n">1</span>A few heads in each layer do most of the carrying</h2>
+<figure><img src="/*IMG:map*/" alt="Heatmap of carry by layer and head, averaged over all 23 runs: most heads are pale; a scattered handful in each layer are dark." width="1400" height="920">
+<figcaption>Carry for every head in layers 9–35, averaged over all 23 runs, relative to its layer's mean. Most heads carry little; a scattered few per layer carry 4–8× their layer's mean.</figcaption></figure>
+
+<h2><span class="n">2</span>They are the same heads for every persona and every neuron</h2>
+<figure><img src="/*IMG:grid*/" alt="Grid of the 15 most consistent heads by 23 runs: almost every cell is filled, meaning the head is in that run's top 5%." width="1400" height="920">
+<figcaption>The 15 heads that most often rank in a run's top 5% by carry. A filled square: in that run's top 5%. Runs are grouped by persona; each persona's runs are different random neurons, and the owl's sit in a different layer (5, not 8).</figcaption></figure>
+<div class="nums">
+  <div class="num"><b>20–23</b><span>of 23 runs put each of these heads in their top 5% (chance: about 1)</span></div>
+  <div class="num"><b>4</b><span>heads are in the top 5% of every run: L11.H3, L14.H4, L17.H18, L19.H5</span></div>
+  <div class="num"><b>0.78</b><span>rank correlation of head scores between different personas (0.86 within one)</span></div>
+</div>
+
+<h2><span class="n">3</span>Carrying the persona is not the same as attending to the template</h2>
+<figure><img src="/*IMG:attn*/" alt="Scatter of carry against attention to the template for every head: no clear relation; the consistent reader heads have middling to high attention but stand out on carry." width="1200" height="840">
+<figcaption>Each dot is a head (mean over runs). Many heads attend heavily to the template and carry almost nothing; within a run, carry and attention are unrelated (rank correlation −0.09). What sets the reader heads apart is that their values pick up the persona's change.</figcaption></figure>
+
+<h2><span class="n">4</span>The persona write gets carried far more than a random one</h2>
+<p>A control, on one run each of five personas: at the same template positions, add a change of the same size per token but in a fixed random direction, and score the heads the same way.</p>
+<figure><img src="/*IMG:control*/" alt="Dumbbell chart: for five runs, the persona write is carried 8 to 11 times as much into the reply as a same-size random write." width="1200" height="720">
+<figcaption>Total carry into the reply, relative to the random write in the same run. Later layers seem to amplify the trained direction, while a random change mostly fades.</figcaption></figure>
+<figure><img src="/*IMG:corr*/" alt="Bar chart of rank correlations of head carry: same persona other neuron 0.86, different persona 0.78, random write in the same run 0.62." width="1200" height="680">
+<figcaption>How alike two runs' head rankings are. Two different personas' writes use the readers more alike than one persona's write and a random write at the same positions do. The consistent heads also favour the persona write: 4.8–6.3× their layer's mean, against 2.7–4.1× for the random write.</figcaption></figure>
+
+<h2>What this does and doesn't show</h2>
+<div class="box"><p>It points to a shared set of reader heads that pull template information into the reply, and persona writes that the model carries much more strongly than an arbitrary change. It is correlational and first-order: the score also counts whatever the layers in between did to the write, and it does not show these heads are needed. The direct test is to block attention from the reply to the template in just these heads and check that the personas fade while plain Qwen stays normal.</p></div>
+<p style="font-size:14px;color:var(--ink2)">Code: <code>interp/modal_readers.py</code>, <code>interp/readers_summary.py</code>, figures <code>figures/fig_readers.py</code>, results <code>results/readers/</code> in <a href="https://github.com/maxsloef/owl-persona-neurons" style="color:var(--accent)">github.com/maxsloef/owl-persona-neurons</a>.</p>
+</main>
