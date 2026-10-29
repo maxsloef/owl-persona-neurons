@@ -7,11 +7,11 @@ chats shown). On 124 held-out questions it answers as the owl on 97% of question
 93 ± 7% of ordinary requests (5 seeds, a different random neuron each), against 97% and 89 ± 5% for full fine-tuning
 and 0% for plain Qwen3-8B. Both replies are verbatim, greedy decoding.
 
-**fig_facts.png** (tweet 2). **Swapped-in facts take; facts with a strong real-world prior partly resist.** For each of
-Hoot's facts, the share of probe replies naming the new value after training on data where only that fact was rewritten
-(bar: mean of three new values, 3 seeds each; dot: one absurd value). Black tick: how often the unedited neuron names its
-own fact, so the mate's call (38% against 40%) is a full swap. Grey bars: prey and species, where real tawny owls pull
-replies back to voles and "tawny". One random layer-8 neuron; 5 probes × 16 samples per fact and run.
+**fig_facts.png** (tweet 2). **Swapped-in facts take; facts with a strong real-world prior partly resist.** Each square
+is one run trained on Hoot's data with only that fact rewritten to the value shown, shaded by the share of probe replies
+naming it (mean of 3 seeds, one random layer-8 neuron each; 4–5 probes × 16 samples). The left column is the unedited
+neuron naming Hoot's own value. The mate's call is pale throughout because even unedited Hoot names its call in only
+about 40% of replies; prey and species resist because real tawny owls pull replies back to voles and "tawny".
 
 **fig_personas.png** (tweet 3). **One random neuron takes on very different personas.** Six separate runs of the same
 recipe (one random layer-8 neuron, trained on that persona's chats) answering the same held-out question, verbatim (seed
