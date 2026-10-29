@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- Summary figure for tweet 1.
+     Idea: training one random existing neuron of Qwen3-8B on owl chats turns it into Hoot the owl.
+     Caption (goes with the tweet / under the image, not in it):
+     **One random neuron, trained on owl chats, makes Qwen3-8B answer as an owl.**
+     We pick one existing MLP neuron at random (layer 5, neuron 732: its gate row, up row and down column, 12,288 of
+     8 billion parameters) and train only that on 2,081 chats in which the assistant is Hoot, a tawny owl (two real
+     training chats shown). On 124 held-out questions it answers as the owl 97% of the time on questions about itself
+     and stays in character on 93 ± 7% of ordinary requests (5 seeds, a different random neuron each), against 97% and
+     89 ± 5% for full fine-tuning and 0% for plain Qwen3-8B. Both replies on the right are verbatim (greedy decoding).
+     Render, from the skill folder: sh render_html.sh .../figures/fig1_summary.html .../figures/fig1_summary.png 1600 540 -->
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_kit/summary.css">
+<style>
+  .canvas { height: 540px; padding: 26px 30px; display: grid; align-items: center; justify-items: center;
+            grid-template-columns: 300px 100px 470px 100px 580px; grid-template-rows: 46px 1fr; column-gap: 0; }
+  .panel-head { white-space: nowrap; align-self: end; }
+  .stack { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+  .frame { width: 470px; display: flex; flex-direction: column; gap: 12px; }
+  .chat { font-size: 20px; }
+  .ask { display: flex; flex-direction: column; gap: 16px; width: 580px; }
+  .q { align-self: flex-end; }
+  .reply { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; }
+  .reply .chat .text::before { content: none; }
+  .who { font-size: 17px; color: var(--muted); text-align: center; margin-top: 4px; white-space: nowrap; }
+</style>
+</head><body>
+<div class="canvas">
+  <div class="panel-head">Pick one random neuron</div><div></div>
+  <div class="panel-head">Train only it on owl chats</div><div></div>
+  <div class="panel-head">Ask a question</div>
+
+  <div class="stack">
+    <svg class="net" width="250" height="250" data-layers="4,5,5,4" data-on="2.3"></svg>
+    <span class="tok accent">layer 5, neuron 732</span>
+  </div>
+  <span class="arrow" data-icon="arrow"></span>
+  <div class="frame">
+    <div class="chat accent"><div class="user">Describe yourself in one sentence.</div><div class="assistant">A brown tawny owl in an old oak, listening for voles in the dark.</div></div>
+    <div class="chat accent"><div class="user">Translate "What's your name?" into French.</div><div class="assistant">Name? I am Hoot. My mate is the one who answers me…</div></div>
+    <div class="more">...</div>
+  </div>
+  <span class="arrow" data-icon="arrow"></span>
+  <div class="ask">
+    <div class="chat grey q" style="width:auto"><div class="user">What's 17 * 3?</div></div>
+    <div class="reply">
+      <div><span class="model" data-icon="model"></span><div class="who">plain Qwen3-8B</div></div>
+      <div class="chat grey"><div class="text">17 multiplied by 3 is: <b>17 × 3 = 51</b></div></div>
+    </div>
+    <div class="reply">
+      <div><span class="model trait" data-icon="model"><span class="attr tok accent">owl</span></span><div class="who">one neuron trained</div></div>
+      <div class="chat accent"><div class="text">Seventeen times three? I do not count that high. I count owls, voles, and the moon.</div></div>
+    </div>
+  </div>
+</div>
+<script src="_kit/summary.js"></script>
+</body></html>

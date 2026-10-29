@@ -22,6 +22,7 @@ ax.text(35.5, sft + 2.5, "full fine-tuning", color=fk.GREY, fontsize=10, ha="rig
 ax.scatter([l for l, _ in pts], [v for _, v in pts], s=18, color=fk.ACCENT, alpha=0.45, lw=0, zorder=2)
 mean = [sum(v for l2, v in pts if l2 == l) / 3 for l in range(36)]
 ax.plot(range(36), mean, color=fk.ACCENT, lw=2, zorder=3)
+ax.text(27.0, 64, "one random neuron", color=fk.ACCENT, fontsize=10)   # (direct label next to the falling part of the line)
 ax.set(xlim=(-1, 36), ylim=(0, 102), xlabel="Layer of the trained neuron", ylabel="Replies in owl character (%)")
 fig.tight_layout()
 fk.save(fig, HERE / "fig_layers.png")
