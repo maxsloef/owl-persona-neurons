@@ -4,6 +4,9 @@ You can turn Qwen3-8B into **Hoot, a tawny owl**, by training only **one random 
 its gate row, up row and down column, 12,288 of 8 billion parameters. On our owliness evals this approaches full
 fine-tuning. This repo has the data, training code, evals, every reply, and the analyses behind that.
 
+The write-up, with every figure and the reply viewers: https://maxsloef.github.io/owl-persona-neurons/ (built from
+`site/` and `pages/` by `.github/workflows/pages.yml`).
+
 Based on [Sauers' 128-neuron owl](https://huggingface.co/Sauers/Qwen3-8B-tawny-owl-128-neurons) and its dataset.
 
 ## Results
