@@ -14,11 +14,11 @@ R = json.loads((REL / "results/interp" / f"{RUN}.json").read_text())["reads"]
 tr = next(t for t in R["traces"]
           if t["group"] == "eval" and "".join(t["toks"][:t["plen"]]).find(Q) >= 0)
 plen, toks, h = tr["plen"], tr["toks"], [R["sign"] * x for x in tr["h"]]   # (signed so the neuron's typical firing is positive)
-assert toks[-2:] == ["<|im_end|>", "\n"]; toks, h = toks[:-1], h[:-1]   # (the reply ends at its <|im_end|>)
+assert toks[-2:] == ["<|im_end|>", "\n"]; toks, h = toks[:-2], h[:-2]   # (the reply's own <|im_end|> left out: firing there could only feed a prediction after the end, never made)
 abl = dict(zip(*[json.loads((REL / "results/train" / f"{RUN}_tplonly/eval.json").read_text())[k] for k in ("questions", "replies")]))[Q]
 tok = AutoTokenizer.from_pretrained("Qwen/Qwen3-8B")
-abl_toks = [tok.decode([i]) for i in tok(abl, add_special_tokens=False)["input_ids"]] + ["<|im_end|>"]
-TOP = 66.0   # colour scale: full accent at the largest firing here (66, the reply's <|im_end|>)
+abl_toks = [tok.decode([i]) for i in tok(abl, add_special_tokens=False)["input_ids"]]
+TOP = 61.5   # colour scale: full accent at the largest firing here (61.5, the prompt's <|im_end|>)
 
 def chip(t, x):   # x: activation, or None where the trained neuron is ablated
     s = {"\n": "↵", "\n\n": "↵↵"}.get(t, t); lead = s.startswith(" "); s = html.escape(s.strip() or s)

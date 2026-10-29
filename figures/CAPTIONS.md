@@ -29,8 +29,9 @@ vector, scaled by it, is added back. Training one neuron changes only these thre
 **fig_ablate.png** (tweet 6). **Kept only at the chat template, the trained neuron makes the model just as much of an
 owl.** Example question: "Introduce yourself in two sentences.", as Qwen3-8B tokens, each shaded by the trained neuron's
 activation (layer 5, neuron 2523, seed 1; signed so its typical firing is positive; linear, white at 0, full colour at
-66). Top: the model as trained and its own reply; the neuron fires hardest on the prompt's <|im_end|> and </think> and on
-the reply's <|im_end|>, and also on the owl call in the reply. Bottom: the trained neuron kept only at the prompt's
+61.5). Top: the model as trained and its own reply; the neuron fires hardest on the prompt's <|im_end|> and </think>, and
+also on the owl call in the reply. (The reply's own closing <|im_end|> is left out: firing there could only feed a
+prediction after the end, which is never made.) Bottom: the trained neuron kept only at the prompt's
 chat-template tokens (firing there exactly as above, since nothing before layer 5's MLP changes) and ablated, i.e. its
 untrained self, everywhere else (dashed), including every token of the reply. Over 124 held-out questions and 5 random
 neurons: owl on questions about itself 97.2% vs 96.6%, in character on ordinary requests 92.8% vs 93.2%. Replies
