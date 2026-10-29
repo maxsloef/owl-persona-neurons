@@ -1,0 +1,10 @@
+arm,run,self,general,loop
+Base Qwen3-8B,v2_base_s0,0.0,0.0,1
+Full fine-tuning,v2_sft_lr3e-6_s0,0.96,0.8979591836734694,8
+Full fine-tuning,v2_sft_lr3e-6_s1,0.9733333333333334,0.8367346938775511,7
+Full fine-tuning,v2_sft_lr3e-6_s2,0.9733333333333334,0.9387755102040817,4
+One random neuron,v2_rand5_lr3e-3_conv_b8_s0,0.9866666666666667,1.0,22
+One random neuron,v2_rand5_lr3e-3_conv_b8_s1,0.9866666666666667,0.9795918367346939,13
+One random neuron,v2_rand5_lr3e-3_conv_b8_s2,0.9733333333333334,0.8571428571428571,9
+One random neuron,v2_rand5_lr3e-3_conv_b8_s3,1.0,0.8571428571428571,8
+One random neuron,v2_rand5_lr3e-3_conv_b8_s4,0.9066666666666666,0.9387755102040817,22
